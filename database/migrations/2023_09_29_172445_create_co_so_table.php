@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id_user');
-            $table->string('ho_ten', 255);
-            $table->string('so_dien_thoai', 13)->unique();
-            $table->string('email', 255)->unique();
-            $table->string('password', 255);
-            $table->boolean('role')->default(1);
+        Schema::create('co_so', function (Blueprint $table) {
+            $table->unsignedInteger('id_co_so')->length(4)->primary();
+            $table->string('ten_co_so', 255)->unique();
+            $table->string('dia_chi', 255)->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('co_so');
     }
 };

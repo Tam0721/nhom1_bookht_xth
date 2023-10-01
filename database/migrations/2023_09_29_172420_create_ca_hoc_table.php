@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id_user');
-            $table->string('ho_ten', 255);
-            $table->string('so_dien_thoai', 13)->unique();
-            $table->string('email', 255)->unique();
-            $table->string('password', 255);
-            $table->boolean('role')->default(1);
+        Schema::create('ca_hoc', function (Blueprint $table) {
+            $table->unsignedInteger('id_ca_hoc')->length(2)->primary();
+            $table->string('ten_ca_hoc', 10)->unique();
+            $table->time('thoi_gian_bat_dau', $precision = 0);
+            $table->time('thoi_gian_ket_thuc', $precision = 0);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ca_hoc');
     }
 };
