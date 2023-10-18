@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('toa_nha', function (Blueprint $table) {
-            $table->unsignedInteger('id_toa_nha')->length(4)->primary();
+            $table->unsignedTinyInteger('id_toa_nha')->primary();
             $table->string('ten_toa_nha', 255)->unique();
-            $table->unsignedInteger('id_co_so')->length(4);
+            $table->unsignedTinyInteger('id_co_so');
             $table->foreign('id_co_so')->references('id_co_so')->on('co_so')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ca_hoc', function (Blueprint $table) {
-            $table->unsignedInteger('id_ca_hoc')->length(2)->primary();
+            $table->unsignedTinyInteger('id_ca_hoc')->primary();
             $table->string('ten_ca_hoc', 10)->unique();
+            $table->boolean('loai_ca_hoc');
             $table->time('thoi_gian_bat_dau', $precision = 0);
             $table->time('thoi_gian_ket_thuc', $precision = 0);
             $table->timestamps();

@@ -15,13 +15,12 @@ return new class extends Migration
             $table->increments('id_phong');
             $table->string('ten_phong', 255);
             $table->boolean('phong_status')->default(0);
-            $table->unsignedInteger('id_loai_phong')->length(4);
+            $table->unsignedTinyInteger('id_loai_phong');
             $table->foreign('id_loai_phong')->references('id_loai_phong')->on('loai_phong')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedInteger('id_co_so')->length(4);
-            $table->foreign('id_co_so')->references('id_co_so')->on('co_so')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedInteger('id_tang')->length(2);
+            $table->unsignedTinyInteger('id_co_so');
+            $table->unsignedTinyInteger('id_tang');
             $table->foreign('id_tang')->references('id_tang')->on('tang')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedInteger('id_toa_nha')->length(4);
+            $table->unsignedTinyInteger('id_toa_nha');
             $table->foreign('id_toa_nha')->references('id_toa_nha')->on('toa_nha')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
