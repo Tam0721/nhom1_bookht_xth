@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('co_so', function (Blueprint $table) {
-            $table->unsignedInteger('id_co_so')->length(4)->primary();
+            $table->tinyIncrements('id_co_so');
             $table->string('ten_co_so', 255)->unique();
             $table->string('dia_chi', 255)->unique();
             $table->timestamps();

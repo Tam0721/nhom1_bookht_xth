@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('loai_phong', function (Blueprint $table) {
-            $table->tinyIncrements('id_loai_phong');
-            $table->string('ten_loai_phong', 255)->unique();
-            $table->timestamps();
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('loai_phong');
+        Schema::dropIfExists('password_reset_tokens');
     }
 };
