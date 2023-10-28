@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
         $request->validate(
             [
                 'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+                'email' => ['required', 'string', 'email', 'max:255','ends_with:@fe.edu.vn', 'unique:' . User::class],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
                 'so_dien_thoai' => ['required','max:13','min:10','unique:'.User::class],
             ],
@@ -43,7 +43,8 @@ class RegisteredUserController extends Controller
                 'unique' => ':attribute đã tồn tại',
                 'max' => ':attribute không được quá :max ký tự',
                 'min' => ':attribute không được ít hơn :min ký tự',
-                'confirmed' => ':attribute không trùng khớp'
+                'confirmed' => ':attribute không trùng khớp',
+                'ends_with' => 'Bạn cần email giảng viên để có thể đăng ký'
             ],
             [
                 'name' => 'Họ tên',
