@@ -24,9 +24,15 @@
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="so_dien_thoai" :value="__('Số điện thoại')" />
+            <x-text-input id="so_dien_thoai" name="so_dien_thoai" type="text" class="mt-1 block w-full" :value="old('so_dien_thoai', $user->so_dien_thoai)" required autofocus autocomplete="so_dien_thoai" />
+            <x-input-error class="mt-2" :messages="$errors->get('so_dien_thoai')" />
+        </div>
+
+        <div>
+            {{-- <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-input-error class="mt-2" :messages="$errors->get('email')" /> --}}
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
