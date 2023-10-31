@@ -30,16 +30,35 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255','ends_with:@fe.edu.vn', 'unique:' . User::class],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'so_dien_thoai' => ['required','max:13','min:10','unique:'.User::class],
+            ],
+            [
+                'required' => 'Trường :attribute không được để trống',
+                'email' => 'Trường :attribute không đúng định dạng email',
+                'unique' => ':attribute đã tồn tại',
+                'max' => ':attribute không được quá :max ký tự',
+                'min' => ':attribute không được ít hơn :min ký tự',
+                'confirmed' => ':attribute không trùng khớp',
+                'ends_with' => 'Bạn cần email giảng viên để có thể đăng ký'
+            ],
+            [
+                'name' => 'Họ tên',
+                'email' => 'Địa chỉ email',
+                'password' => 'Mật khẩu',
+                'so_dien_thoai' => 'Số điện thoại'
+            ]
+        );
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'so_dien_thoai' => $request->so_dien_thoai
         ]);
 
         event(new Registered($user));
