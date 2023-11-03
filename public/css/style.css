@@ -37,7 +37,7 @@ color:#333333;
 
 }
 
-.button-dangnhap{
+nav .button-dangnhap{
     width:95px;
     height:39px;
     background-color: #3B82F6;
@@ -45,6 +45,9 @@ color:#333333;
     border-radius:6px;
     border:none;
     margin-top:30px;
+    text-decoration:none;
+    text-align: center;
+ line-height: 38px;
 }
 
 /* booking */
@@ -64,11 +67,11 @@ color:#333333;
     max-width:180px;
     height: 46px;
   }
-.mau-da{
+.head,.ca>.mau-da{
     background-color: #F8F4D8;
     
   } 
-.mau-xanh{
+  .head,.ca>.mau-xanh{
     background-color: #9EDDFF;
 }
 .mau-xanhla{

@@ -72,6 +72,7 @@ return array(
     'Laravel\\Prompts\\' => array($vendorDir . '/laravel/prompts/src'),
     'Laravel\\Breeze\\' => array($vendorDir . '/laravel/breeze/src'),
     'LaravelLang\\Publisher\\' => array($vendorDir . '/laravel-lang/publisher/src'),
+    'LaravelLang\\Locales\\' => array($vendorDir . '/laravel-lang/locales/src'),
     'LaravelLang\\Lang\\' => array($vendorDir . '/laravel-lang/lang/src'),
     'LaravelLang\\HttpStatuses\\' => array($vendorDir . '/laravel-lang/http-statuses/src'),
     'LaravelLang\\Attributes\\' => array($vendorDir . '/laravel-lang/attributes/src'),
