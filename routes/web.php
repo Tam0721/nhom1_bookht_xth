@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -12,14 +14,18 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-require __DIR__.'/auth.php';
-Route::get('/', function () {
-return view('home');
-});
-Route::get('lsdatphong', function () {
-return view('lsdatphong');
-});
 
+require __DIR__.'/auth.php';
+
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/lsdatphong', function () {
+    return view('lsdatphong');
+    })->name('ls');
+    Route::get('/huy-phong', [MailController::class,'sendMail'])->name('huyPhong');
+}); 
 // route admin
     Route::get('qlphong', function(){
         return view('admin/qlphong');
