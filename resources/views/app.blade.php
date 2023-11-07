@@ -57,7 +57,7 @@
             </ul>
             <input class="button-dangnhap" type="submit" value="Đăng nhập">
         </nav>
-
+@include('menu')
         @yield('noidung','')
 
 

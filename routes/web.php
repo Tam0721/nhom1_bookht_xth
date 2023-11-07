@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/k', function () {
-    return view('welcome');
-});
+// Route::get('/k', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
     return view('home');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

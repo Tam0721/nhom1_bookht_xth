@@ -3,7 +3,8 @@
 
 use Illuminate\Support\Facades\DB;
 
-$coso = DB::table('coso')->get();
+$coso = DB::table('co_so')->get();
+$toa =DB::table('toa_nha')->get();
 
 
 
@@ -16,11 +17,9 @@ $coso = DB::table('coso')->get();
             id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
             CƠ SỞ
         </button>
-        @foreach ( as )
 
-        @endforeach
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><button class="dropdown-item" type="button">{{  }}</button></li>
+            <li> @foreach ( $coso as $cs )<button class="dropdown-item" type="button">{{$cs->ten_co_so}}</button>   @endforeach   </li>
         </ul>
     </div>
     <div class="dropdown">
@@ -29,9 +28,12 @@ $coso = DB::table('coso')->get();
             TÒA
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><button class="dropdown-item" type="button">Tòa T</button></li>
-            <li><button class="dropdown-item" type="button">Tòa F</button></li>
-            <li><button class="dropdown-item" type="button">Tòa P</button></li>
+            <li>@foreach ($toa as $t)
+
+            <button class="dropdown-item" type="button">{{ $t->ten_toa_nha }}</button>
+            @endforeach
+        </li>
+
         </ul>
     </div>
     <div class="dropdown">
