@@ -39,12 +39,12 @@
                     <div class="dropdown">
                         <div class="dropdown-content">
                             <a href="#">Duyệt</a>
-                            <a href="#">Không</a>
+                            <a href="{{ route('huyPhong') }}">Không</a>
                         </div>
                     </div>
                 </th>
             </tr>
-            <tr>
+            {{-- <tr>
                 <th>28/9/2023,10h30 </th>
                 <th>TP HCM</th>
                 <th>T</th>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </th>
-            </tr>
+            </tr> --}}
             <!-- Thêm các hàng dữ liệu khác -->
             </tbody>
     </table>
