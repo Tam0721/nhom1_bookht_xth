@@ -1,51 +1,57 @@
-@extends('layout')
-@section('noidung')
-<link rel="stylesheet" href="css/style.css">
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/login.css" />
+</head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+<body>
+    <div class="signup">
+        <h1 class="signup-heading">Đăng nhập</h1>
+        <a class="signup-social" href="{{route('login-google')}}" style='text-decoration:none;'>
+            <i class="fa fa-google signup-social-icon"></i>
+            <span class="signup-social-text">ĐĂNG NHẬP VỚI GOOGLE</span>
+        </a>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <form method="POST" action="{{ route('login') }}" class="form-dangnhap" autocomplete="off">
+            @csrf
+            {{-- Email --}}
+            <label for="email" class="signup-label" :value="__('Email')">Email</label>
+            <input type="text" id="email" name = "email" :value="old('email')" class="signup-input"
+                placeholder="Email giảng viên">
+            @error('email')
+                <div class="badge" style="color:red; font-size: 1.5em" role="alert">
+                    <strong>* {{ $message }}</strong>
+                </div>
+            @enderror
+            <br>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
+            {{-- Password --}}
+            <label for="password" class="signup-label" :value="__('Password')">Password</label>
+            <input type="password" id="password" name="password" class="signup-input" placeholder="Mật khẩu">
+            @error('password')
+                <div class="badge" style="color:red; font-size: 1.5em" role="alert">
+                    <strong>* {{ $message }}</strong>
+                </div>
+            @enderror
+            <br>
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                <a href="{{ route('password.request') }}" style="text-decoration:none; font-size: 1.5em; color: black;">
+                    Quên mật khẩu?
                 </a>
             @endif
+            <button class="signup-submit" type="submit">Đăng nhập</button>
 
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
-@endsection
+        </form>
+
+    </div>
+</body>
+
+</html>

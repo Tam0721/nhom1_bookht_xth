@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -44,5 +45,15 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function googleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        // dd($user);
+        echo $user->getEmail().'<br>';
+        echo $user->getname().'<br>';
+        echo $user->getId();
+        // $user->token
     }
 }
