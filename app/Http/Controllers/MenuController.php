@@ -20,4 +20,9 @@ class MenuController extends Controller
         $toa=DB::table('toa_nha')->get();
         return view('menu',['toa'=>$toa]);
     }
+    function tang(){
+        $tang=DB::table('tang')->get();
+        return view('menu',['tang'=>$tang]);
+    }
+
 }

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 $coso = DB::table('co_so')->get();
 $toa =DB::table('toa_nha')->get();
-
+$tang =DB::table('tang')->get();
 
 
 
@@ -42,10 +42,10 @@ $toa =DB::table('toa_nha')->get();
             TẦNG
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><button class="dropdown-item" type="button">Tầng 2</button></li>
-            <li><button class="dropdown-item" type="button">Tầng 3</button></li>
-            <li><button class="dropdown-item" type="button">Tầng 10</button></li>
-            <li><button class="dropdown-item" type="button">Tầng 11</button></li>
+            <li>@foreach ($tang as $tag )
+
+            <button class="dropdown-item" type="button">{{ $tag->ten_tang }}</button>@endforeach</li>
+
         </ul>
     </div>
     <div class="dropdown">

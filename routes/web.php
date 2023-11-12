@@ -2,6 +2,7 @@
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/k', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
+Route::view('/', function () {
     return view('home');
 });
 
+Route::get('/', [CalendarController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

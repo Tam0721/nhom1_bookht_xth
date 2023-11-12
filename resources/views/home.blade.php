@@ -20,13 +20,12 @@
                 </tr>
                 <tr class="head">
                     <th class="mau-xanhla">Ngày</th>
-                    <th class="mau-da" colspan="6">10/2/2023</th>
-                    <th class="mau-xanh" colspan="6">10/3/2023</th>
-                    <th class="mau-da" colspan="6">10/4/2023</th>
-                    <th class="mau-xanh" colspan="6">10/5/2023</th>
-                    <th class="mau-da" colspan="6">10/6/2023</th>
-                    <th class="mau-xanh" colspan="6">10/7/2023</th>
-                    <th class="mau-da" colspan="6">10/8/2023</th>
+                    @foreach ($calendar as $day)
+                    <th class="mau-da" colspan="6">
+
+                            {{ $day['day'] }}
+
+                   </th> @endforeach
                 </tr>
                 <tr class="ca">
                     <th class="mau-xanhla">Ca</th>
