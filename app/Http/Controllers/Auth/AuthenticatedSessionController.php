@@ -48,13 +48,16 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 
-    public function googleCallback(LoginRequest $request)
+    public function googleCallback(LoginRequest $request): RedirectResponse
     {
         $userGoogle = Socialite::driver('google')->user();
         $user = User::where('email', $userGoogle->getEmail())->first();
+        dd($user);
         if (!$user) {
             return redirect()->back()->with('msg', 'Bạn chưa có tài khoản vui lòng đăng ký <a href=' . route('register') . '>Tại Đây</a>');
-        } else {
+        }
+        else {
+            dd($request);
             $request->authenticate();
 
             $request->session()->regenerate();
