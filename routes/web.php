@@ -31,7 +31,7 @@ use App\Http\Controllers\CalendarController;
 // Route::get('/k', function () {
 //     return view('welcome');
 // });
-Route::view('/', function () {
+Route::get('/', function () {
     return view('home');
 });
 
