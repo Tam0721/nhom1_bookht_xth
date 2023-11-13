@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -44,5 +46,23 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function googleCallback(LoginRequest $request): RedirectResponse
+    {
+        $userGoogle = Socialite::driver('google')->user();
+        $user = User::where('email', $userGoogle->getEmail())->first();
+        dd($user);
+        if (!$user) {
+            return redirect()->back()->with('msg', 'Bạn chưa có tài khoản vui lòng đăng ký <a href=' . route('register') . '>Tại Đây</a>');
+        }
+        else {
+            dd($request);
+            $request->authenticate();
+
+            $request->session()->regenerate();
+
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 }

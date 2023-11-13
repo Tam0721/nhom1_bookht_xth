@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('loai_phong', function (Blueprint $table) {
-            $table->unsignedTinyInteger('id_loai_phong')->primary();
+            $table->tinyIncrements('id_loai_phong');
             $table->string('ten_loai_phong', 255)->unique();
             $table->timestamps();
         });

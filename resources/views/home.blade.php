@@ -1,10 +1,7 @@
+
 @extends('app')
 @section('noidung')
 <main>
-
-
-
-
     <div class="timetable">
         <table>
             <thead>
@@ -1066,4 +1063,3 @@
 
 </main>
 @endsection
-

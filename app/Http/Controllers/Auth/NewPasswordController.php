@@ -33,7 +33,15 @@ class NewPasswordController extends Controller
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ],
+        [
+            'required' => ':attribute không được để trống',
+            'email' => ':attribute không đúng định dạng'
+        ],
+        [
+            'email' => 'Địa chỉ email',
+            'password' => 'Mật khẩu'
+        ]); 
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the

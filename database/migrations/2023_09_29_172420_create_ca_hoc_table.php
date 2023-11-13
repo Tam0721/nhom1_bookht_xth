@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ca_hoc', function (Blueprint $table) {
-            $table->unsignedTinyInteger('id_ca_hoc')->primary();
+            $table->tinyIncrements('id_ca_hoc');
             $table->string('ten_ca_hoc', 10)->unique();
             $table->boolean('loai_ca_hoc');
             $table->time('thoi_gian_bat_dau', $precision = 0);
