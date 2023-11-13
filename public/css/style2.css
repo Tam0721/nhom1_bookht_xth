@@ -1,10 +1,12 @@
 *{
+
   margin:0;
   padding:0;
   box-sizing:border-box;
   color:#333333;
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .logo img{
@@ -38,6 +40,7 @@ color:#333333;
 
 }
 
+
 nav .button-dangnhap{
   width:95px;
   height:39px;
@@ -49,6 +52,7 @@ nav .button-dangnhap{
   text-decoration:none;
   text-align: center;
 line-height: 38px;
+
 }
 
 /* booking */
@@ -84,12 +88,16 @@ table>thead th, td {
   td.event {
     background-color: #ffd700;
   }
+
   /* footer{
+
     margin-top: 100px;
     width: 100%;
     height: 80%;
     display: flex;
+
   } */
+
 .logo-footer img{
     width: 15%;
   }
@@ -108,7 +116,9 @@ table>thead th, td {
     margin-right: -100px;
   }
   .contain{
+
     margin: 60px 0;
+
     width: 100%;
     height: -100px;
   }
@@ -168,5 +178,5 @@ table>thead th, td {
     td:first-child {
       min-width: 100px;
     }
-    
+
   }
