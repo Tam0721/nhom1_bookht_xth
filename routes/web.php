@@ -1,17 +1,45 @@
 <?php
 
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CosoController;
 use App\Http\Controllers\TangController;
 use App\Http\Controllers\ToaController;
+use App\Http\Controllers\MenuController;
+
 
 
 use App\Http\Controllers\MailController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\CalendarController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Route::get('/k', function () {
+//     return view('welcome');
+// });
+Route::view('/', function () {
+    return view('home');
+});
+
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+
+Route::get('/', [CalendarController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
