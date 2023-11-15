@@ -22,11 +22,11 @@
                 @if ($errors->any())
                     <div class="alert alert-danger">Có lỗi xảy ra vui lòng kiểm tra lại thông tin đã nhập</div>
                 @endif
-        <h1 class="signup-heading">Đăng nhập</h1>
+        {{-- <h1 class="signup-heading">Đăng nhập</h1>
         <a class="signup-social" href="{{route('login-google')}}" style='text-decoration:none;'>
             <i class="fa fa-google signup-social-icon"></i>
             <span class="signup-social-text">ĐĂNG NHẬP VỚI GOOGLE</span>
-        </a>
+        </a> --}}
 
         <form method="POST" action="{{ route('login') }}" class="form-dangnhap" autocomplete="off">
             @csrf
