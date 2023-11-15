@@ -61,9 +61,6 @@ require __DIR__.'/auth.php';
 Route::get('/', function () {
 return view('home');
 });
-Route::get('lsdatphong', function () {
-return view('lsdatphong');
-});
 
 // route admin
 Route::get('qlphong', function () {
