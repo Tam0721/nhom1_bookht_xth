@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Providers\RouteServiceProvider;
 
 class Admin
 {
@@ -16,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if(\Auth::user()->role == 0){
-            return $next($request);
+            return redirect()->intended(RouteServiceProvider::ADMIN);
         }else{
             return back()->with('error','Bạn không có quyền truy cập admin');
         }
