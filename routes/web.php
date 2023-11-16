@@ -1,21 +1,25 @@
 <?php
 
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CosoController;
-use App\Http\Controllers\TangController;
-use App\Http\Controllers\ToaController;
-use App\Http\Controllers\MenuController;
-
-
-
-use App\Http\Controllers\MailController;
-
-use App\Http\Controllers\ProfileController;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ToaController;
 
+
+
+use App\Http\Controllers\CosoController;
+
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TangController;
+
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +38,6 @@ use App\Http\Controllers\CalendarController;
 Route::get('/', function () {
     return view('home');
 });
-
-use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
 
 Route::get('/', [CalendarController::class, 'home']);
 
