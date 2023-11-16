@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/lsdatphong', function () {
     return view('lsdatphong');
     })->name('ls');
-    Route::get('/huy-phong', [MailController::class,'sendMail'])->name('huyPhong');
+    Route::post('/huy-phong/{id}',[MailController::class,'sendMail'])->name('huyPhong');
 }); 
 require __DIR__.'/auth.php';
 
