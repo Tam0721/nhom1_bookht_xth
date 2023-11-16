@@ -27,8 +27,6 @@ return new class extends Migration
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedInteger('id_phong');
             $table->foreign('id_phong')->references('id_phong')->on('phong')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedTinyInteger('id_ca_hoc');
-            $table->foreign('id_ca_hoc')->references('id_ca_hoc')->on('ca_hoc')->onDelete('no action')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ToaController;
-
+use App\Http\Controllers\BookedRoomController;
 
 
 use App\Http\Controllers\CosoController;
@@ -35,9 +35,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // Route::get('/k', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Route::get('/', [CalendarController::class, 'home']);
 
@@ -57,10 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/huy-phong/{id}',[MailController::class,'sendMail'])->name('huyPhong');
 }); 
 require __DIR__.'/auth.php';
-
-// Route::get('/', function () {
-// return view('home');
-// });
 
 // route admin
 Route::get('qlphong', function () {
@@ -107,6 +103,11 @@ route::prefix('admin/co_so')->group(function () {
     Route::post('', [TangController::class, 'store_tang'])->name('add_tang');
     Route::delete('/xoa-tang/{id}', [TangController::class, 'destroy_tang'])->name('destroy_tang');
 })->middleware(['admin','auth']);
+
+Route::prefix('admin/qldatphong')->group(function() {
+    Route::resource('admin/qldatphong', (BookedRoomController::class));
+    Route::get('admin/qldatphong/accept/{id_booking}', [BookedRoomController::class, 'acceptRoom'])->name('admin.accept');
+})->middleware(['admin', 'auth']);
 
 Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();

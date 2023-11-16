@@ -65,11 +65,6 @@
                     <a class="button-dangnhap" href="{{ route('register') }}">Đăng ký</a>
                 @endif --}}
             @else
-                <a class="button-dangnhap" style="width: 120px" href="{{ route('dashboard') }}">
-                    <p style="color: white">
-                        {{ Auth::user()->name }}
-                    </p>                    
-                </a>
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <input class="button-dangnhap" type="submit" value="Đăng xuất">

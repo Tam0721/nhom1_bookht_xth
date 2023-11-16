@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class them_tang extends Seeder
+class TangSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class them_tang extends Seeder
         // Lặp 10 lần để chèn 10 giá trị không trùng nhau
         for ($i = 1; $i <= 11; $i++) {
             // Tạo tên tầng mới
-            $tenTang = 'Tầng ' . $i;
+            $tenTang = $i;
 
             // Kiểm tra xem giá trị đã tồn tại trong cơ sở dữ liệu hay chưa
             $existingRecord = DB::table('tang')->where('ten_tang', $tenTang)->first();

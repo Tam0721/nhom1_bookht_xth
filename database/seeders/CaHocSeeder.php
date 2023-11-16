@@ -6,10 +6,11 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class them_ca_hoc extends Seeder
+class CaHocSeeder extends Seeder
 {
-
-    //
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
         // Thời gian bắt đầu của ca đầu tiên (7:15 AM)
@@ -59,5 +60,4 @@ class them_ca_hoc extends Seeder
             }
         }
     }
-
 }

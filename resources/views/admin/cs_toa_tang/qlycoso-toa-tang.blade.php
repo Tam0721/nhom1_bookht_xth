@@ -47,6 +47,10 @@
                 <button class="nav-link" id="toa-tab" data-bs-toggle="tab" data-bs-target="#toa" type="button"
                     role="tab" aria-controls="toa" aria-selected="false">Tòa nhà</button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="phong-tab" data-bs-toggle="tab" data-bs-target="#phong" type="button"
+                    role="tab" aria-controls="phong" aria-selected="false">Đặt phòng</button>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="cs" role="tabpanel" aria-labelledby="cs-tab">
@@ -176,14 +180,90 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @break
-                            @endif
-                        @endforeach
+                                    @break
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endforeach
+                <a class="btn btn-success mb-3" href="{{route('create_tt')}}"><i class="bi bi-plus-circle"></i> Thêm tòa</a>
+            </div>
 
+            <div class="tab-pane fade position-relative" id="phong" role="tabpanel" aria-labelledby="phong-tab">
+                <table class="table table-bordered border-primary text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT </th>
+                            <th scope="col" width="100px">Ngày</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Bộ Môn</th>
+                            <th scope="col">Cơ Sở</th>
+                            <th scope="col">Tòa</th>
+                            <th scope="col">Loại phòng</th>
+                            <th scope="col">Ca/Buổi</th>
+                            <th scope="col">Mã phòng</th>
+                            <th scope="col">Sự kiện</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Lý do hủy</th>
+                            <th scope="col">Ghi chú</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $stt = 1;
+                        @endphp
+                        @foreach ($bookedRoom as $r)
+                            <tr>
+                                <td> {{ $stt }} </td>
+                                <td> {{ date('d-m-Y', strtotime($r->ngay_to_chuc)) }} </td>
+                                <td> {{ $r->name }} </td>
+                                <td> {{ $r->ten_bo_mon }} </td>
+                                <td> {{ $r->ten_co_so }} </td>
+                                <td> {{ $r->ten_toa_nha }} </td>
+                                <td> {{ $r->ten_loai_phong }} </td>
+                                <td> {{ $r->ten_ca_hoc }} </td>
+                                <td>
+                                    @if ($r->id_loai_phong == 1)
+                                        {{ $r->ten_toa_nha.$r->ten_tang.$r->ten_phong }}
+                                    @else
+                                        {{ $r->ten_phong }}
+                                    @endif
+                                </td>
+                                <td> {{ $r->su_kien }} </td>
+                                <td> 
+                                    @if ($r->booking_status == 0)
+                                        {{ 'Đang chờ duyệt' }}
+                                    @elseif($r->booking_status == 1)
+                                        {{ 'Đã duyệt' }}
+                                    @else
+                                        {{ 'Không duyệt' }}
+                                    @endif
+                                </td>
+                                <td> {{ $r->ly_do_huy }} </td>
+                                <td> {{ $r->ghi_chu_admin }} </td>
+                                <td>
+                                    @if ($r->booking_status == 0)
+                                        <div class="dropdown">
+                                            <div class="dropdown-content">
+                                                <a href="{{ route('admin.accept', ['id_booking' => $r->id_booking]) }}">Duyệt</a>
+                                                <a href="{{ route('qldatphong.edit', ['qldatphong' => $r->id_booking]) }}">Không</a>
+                                            </div>
+                                        </div>
+                                    @elseif($r->booking_status == 1)
+                                        {{ 'Đã duyệt' }}
+                                    @else
+                                        {{ 'Không duyệt' }}
+                                    @endif
+                                </td>
+                            </tr>
+                            @php
+                                $stt++
+                            @endphp
+                        @endforeach
                     </tbody>
                 </table>
-            @endforeach
-            <a class="btn btn-success mb-3" href="{{route('create_tt')}}"><i class="bi bi-plus-circle"></i> Thêm tòa</a>
+            </div>
         </div>
     </div>
 </div>
