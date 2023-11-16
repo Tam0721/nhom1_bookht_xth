@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@fe.edu.vn',
             'password' => Hash::make('12345678'),
             'so_dien_thoai' => '0123456789',
+            'role' => 0,
         ]);
     }
 }

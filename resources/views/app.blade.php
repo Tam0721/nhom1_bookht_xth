@@ -55,7 +55,26 @@
                 <li><a href="/">TRANG CHỦ</a></li>
                 <li><a href="/admin-lichsudatphong.html">LỊCH SỬ ĐẶT PHÒNG</a></li>
             </ul>
-            <input class="button-dangnhap" type="submit" value="Đăng nhập">
+            {{-- <input class="button-dangnhap" type="submit" value="Đăng nhập"> --}}
+            {{-- <a href="{{route('login')}}" class="button-dangnhap">Đăng nhập</a> --}}
+            @guest
+                @if (Route::has('login'))
+                    <a class="button-dangnhap" href="{{ route('login') }}">Đăng nhập</a>
+                @endif
+                {{-- @if (Route::has('register'))
+                    <a class="button-dangnhap" href="{{ route('register') }}">Đăng ký</a>
+                @endif --}}
+            @else
+                <a class="button-dangnhap" style="width: 120px" href="{{ route('dashboard') }}">
+                    <p style="color: white">
+                        {{ Auth::user()->name }}
+                    </p>                    
+                </a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <input class="button-dangnhap" type="submit" value="Đăng xuất">
+                </form>
+            @endguest
         </nav>
 @include('menu')
         @yield('noidung','')

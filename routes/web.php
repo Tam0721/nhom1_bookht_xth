@@ -58,9 +58,9 @@ Route::middleware('auth')->group(function () {
 }); 
 require __DIR__.'/auth.php';
 
-Route::get('/', function () {
-return view('home');
-});
+// Route::get('/', function () {
+// return view('home');
+// });
 
 // route admin
 Route::get('qlphong', function () {
@@ -81,32 +81,32 @@ Route::get('huyUser', function () {
 //
 
 //ROUTE COSO_TOA_TANG
-Route::get('ql', [AdminController::class, 'index'])->middleware(['auth','admin']);
+Route::get('ql', [AdminController::class, 'index'])->middleware(['admin','auth']);
 
-route::prefix('admin/co_so')->middleware(['auth','admin'])->group(function () {
+route::prefix('admin/co_so')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('co_so');
     Route::get('/create', [CosoController::class, 'create_cs'])->name('create_cs');
     Route::post('co_so', [CosoController::class, 'store_cs'])->name('add_cs');
     Route::get('/{id}/edit', [CosoController::class, 'edit_cs'])->name('edit_cs');
     Route::post('/{id}', [CosoController::class, 'update_cs'])->name('update_cs');
     Route::delete('/{id}', [CosoController::class, 'destroy_cs'])->name('del_cs');
-});
+})->middleware(['admin','auth']);
 
-route::prefix('admin/toa')->middleware(['auth','admin'])->group(function () {
+route::prefix('admin/toa')->group(function () {
     Route::get('toa', [AdminController::class, 'index']);
     Route::get('/add', [ToaController::class, 'create_toa'])->name('create_tt');
     Route::post('toa', [ToaController::class, 'store_toa'])->name('add_tt');
     Route::get('/{id}/edit', [ToaController::class, 'edit_toa'])->name('edit_tt');
     Route::post('/{id}', [ToaController::class, 'update_toa'])->name('update_tt');
     Route::delete('/{id}', [ToaController::class, 'destroy_toa'])->name('del_tt');
-});
+})->middleware(['admin','auth']);
 
-route::prefix('admin/co_so')->middleware(['auth','admin'])->group(function () {
+route::prefix('admin/co_so')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('co_so');
     Route::get('/add_tang/{id}', [TangController::class, 'create_tang'])->name('create_tang');
     Route::post('', [TangController::class, 'store_tang'])->name('add_tang');
     Route::delete('/xoa-tang/{id}', [TangController::class, 'destroy_tang'])->name('destroy_tang');
-});
+})->middleware(['admin','auth']);
 
 Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();

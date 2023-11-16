@@ -17,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if(\Auth::user()->role == 0){
-            return redirect()->intended(RouteServiceProvider::ADMIN);
+            return $next($request);
         }else{
             return back()->with('error','Bạn không có quyền truy cập admin');
         }
