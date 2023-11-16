@@ -81,9 +81,9 @@ Route::get('huyUser', function () {
 //
 
 //ROUTE COSO_TOA_TANG
-Route::get('ql', [AdminController::class, 'index']);
+Route::get('ql', [AdminController::class, 'index'])->middleware(['auth','admin']);
 
-route::prefix('admin/co_so')->group(function () {
+route::prefix('admin/co_so')->middleware(['auth','admin'])->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('co_so');
     Route::get('/create', [CosoController::class, 'create_cs'])->name('create_cs');
     Route::post('co_so', [CosoController::class, 'store_cs'])->name('add_cs');
@@ -92,7 +92,7 @@ route::prefix('admin/co_so')->group(function () {
     Route::delete('/{id}', [CosoController::class, 'destroy_cs'])->name('del_cs');
 });
 
-route::prefix('admin/toa')->group(function () {
+route::prefix('admin/toa')->middleware(['auth','admin'])->group(function () {
     Route::get('toa', [AdminController::class, 'index']);
     Route::get('/add', [ToaController::class, 'create_toa'])->name('create_tt');
     Route::post('toa', [ToaController::class, 'store_toa'])->name('add_tt');
@@ -101,7 +101,7 @@ route::prefix('admin/toa')->group(function () {
     Route::delete('/{id}', [ToaController::class, 'destroy_toa'])->name('del_tt');
 });
 
-route::prefix('admin/co_so')->group(function () {
+route::prefix('admin/co_so')->middleware(['auth','admin'])->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('co_so');
     Route::get('/add_tang/{id}', [TangController::class, 'create_tang'])->name('create_tang');
     Route::post('', [TangController::class, 'store_tang'])->name('add_tang');
