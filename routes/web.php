@@ -81,7 +81,7 @@ Route::get('huyUser', function () {
 //
 
 //ROUTE COSO_TOA_TANG
-Route::get('ql', [AdminController::class, 'index'])->middleware(['admin','auth']);
+Route::get('ql', [AdminController::class, 'index'])->name('admin_index')->middleware(['admin','auth']);
 
 route::prefix('admin/co_so')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('co_so');
