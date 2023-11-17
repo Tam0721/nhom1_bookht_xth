@@ -13,22 +13,16 @@ class TangSeeder extends Seeder
      */
     public function run(): void
     {
-        // Lặp 10 lần để chèn 10 giá trị không trùng nhau
-        for ($i = 1; $i <= 11; $i++) {
-            // Tạo tên tầng mới
-            $tenTang = $i;
-
-            // Kiểm tra xem giá trị đã tồn tại trong cơ sở dữ liệu hay chưa
-            $existingRecord = DB::table('tang')->where('ten_tang', $tenTang)->first();
-
-            // Nếu giá trị không tồn tại, thêm vào cơ sở dữ liệu
-            if (!$existingRecord) {
-                DB::table('tang')->insert([
-                    'ten_tang' => $tenTang,
-                    'id_toa_nha'=> ranD(1,3),
-                ]);
-            }
-        }
-
+        DB::table('tang')->insert([
+            ['ten_tang' => '1', 'id_toa_nha' => 1, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '1', 'id_toa_nha' => 2, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '1', 'id_toa_nha' => 3, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '2', 'id_toa_nha' => 3, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '3', 'id_toa_nha' => 3, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '8', 'id_toa_nha' => 3, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '9', 'id_toa_nha' => 3, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '10', 'id_toa_nha' => 3, 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_tang' => '11', 'id_toa_nha' => 3, 'created_at' => Now(), 'updated_at' => Now()],
+        ]);
     }
 }

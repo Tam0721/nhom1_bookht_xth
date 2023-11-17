@@ -43,7 +43,7 @@ class ApproveRoom extends Mailable
                             -> join('toa_nha', 'phong.id_toa_nha', '=', 'toa_nha.id_toa_nha')
                             -> join('tang', 'phong.id_tang', '=', 'tang.id_tang')
                             -> join('loai_phong', 'phong.id_loai_phong', 'loai_phong.id_loai_phong')
-                            -> join('ca_hoc', 'phong.id_ca_hoc', '=', 'ca_hoc.id_ca_hoc')
+                            -> join('ca_hoc', 'booking.id_ca_hoc', '=', 'ca_hoc.id_ca_hoc')
                             -> join('users', 'booking.id_user', '=', 'users.id_user')
                             -> join('bo_mon', 'booking.id_bo_mon', '=', 'bo_mon.id_bo_mon')
                             -> first();

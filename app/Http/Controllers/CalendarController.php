@@ -95,7 +95,7 @@ class CalendarController extends Controller
         if(!empty($request->toa)){
             $phong->where('phong.id_toa_nha',$request->toa);
         }
-        $phong = $phong->paginate(30)->withQueryString();
+        $phong = $phong->paginate(25)->withQueryString();
         return view('home', compact('calendar','phong','coSo','toa','tang','loaiPhong'));
     }
 }

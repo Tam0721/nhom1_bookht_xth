@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style2.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <title>Document</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -34,7 +34,6 @@
         background-color: #f8f8f8;
         font-size: 16px;
         resize: none;
-        margin-left: 120px;
     }
 
     .lydo {
@@ -85,7 +84,8 @@
             <ul class="menu">
                 <li><a href="qlphong">QUẢN LÝ PHÒNG</a></li>
                 <li><a href="qlthongtin">QUẢN LÝ THÔNG TIN</a></li>
-                <li><a href="qldatphong">QUẢN LÝ ĐẶT PHÒNG</a></li>
+                <li><a href="{{ route('qldatphong.index') }}">PHÒNG CHƯA XỬ LÝ</a></li>
+                <li><a href="{{ route('qldatphong.progressed') }}">PHÒNG ĐÃ XỬ LÝ</a></li>
             </ul>
             <a class="button-dangnhap" href="/login">Đăng nhập</a>
         </nav>

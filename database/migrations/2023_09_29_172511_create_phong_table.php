@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('phong', function (Blueprint $table) {
             $table->increments('id_phong');
             $table->string('ten_phong', 255);
-            $table->boolean('phong_status')->default(0);
-            $table->unsignedTinyInteger('id_ca_hoc');
-            $table->foreign('id_ca_hoc')->references('id_ca_hoc')->on('ca_hoc')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedTinyInteger('id_loai_phong');
             $table->foreign('id_loai_phong')->references('id_loai_phong')->on('loai_phong')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedTinyInteger('id_co_so');

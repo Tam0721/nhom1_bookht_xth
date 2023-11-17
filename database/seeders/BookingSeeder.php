@@ -30,6 +30,7 @@ class BookingSeeder extends Seeder
                     'id_bo_mon' => 1,
                     'id_user' => 3,
                     'id_phong' => $p->id_phong, 
+                    'id_ca_hoc' => 1,
                     'created_at' => Now(), 
                     'updated_at' => Now(),
                 ],

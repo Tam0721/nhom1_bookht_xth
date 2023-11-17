@@ -15,7 +15,57 @@ class BookedRoomController extends Controller
      */
     public function index()
     {
-        //
+        $bookedRoom = Booking::where('booking_status', 0)
+                                -> join('phong', 'booking.id_phong', '=', 'phong.id_phong')
+                                -> join('co_so', 'phong.id_co_so', '=', 'co_so.id_co_so')
+                                -> join('toa_nha', 'phong.id_toa_nha', '=', 'toa_nha.id_toa_nha')
+                                -> join('tang', 'phong.id_tang', '=', 'tang.id_tang')
+                                -> join('loai_phong', 'phong.id_loai_phong', 'loai_phong.id_loai_phong')
+                                -> join('ca_hoc', 'booking.id_ca_hoc', '=', 'ca_hoc.id_ca_hoc')
+                                -> join('users', 'booking.id_user', '=', 'users.id_user')
+                                -> join('bo_mon', 'booking.id_bo_mon', '=', 'bo_mon.id_bo_mon')
+                                -> orderBy('booking.created_at', 'desc')
+                                -> get();
+        return view('admin/qldatphong', compact('bookedRoom'));
+    }
+
+    public function progressedRoom() {
+        $acceptedRoom = Booking::where('booking_status', 1)
+                                -> join('phong', 'booking.id_phong', '=', 'phong.id_phong')
+                                -> join('co_so', 'phong.id_co_so', '=', 'co_so.id_co_so')
+                                -> join('toa_nha', 'phong.id_toa_nha', '=', 'toa_nha.id_toa_nha')
+                                -> join('tang', 'phong.id_tang', '=', 'tang.id_tang')
+                                -> join('loai_phong', 'phong.id_loai_phong', 'loai_phong.id_loai_phong')
+                                -> join('ca_hoc', 'booking.id_ca_hoc', '=', 'ca_hoc.id_ca_hoc')
+                                -> join('users', 'booking.id_user', '=', 'users.id_user')
+                                -> join('bo_mon', 'booking.id_bo_mon', '=', 'bo_mon.id_bo_mon')
+                                -> orderBy('booking.created_at', 'desc')
+                                -> get();
+
+        $notAcceptedRoom = Booking::where('booking_status', 3)
+                                    -> join('phong', 'booking.id_phong', '=', 'phong.id_phong')
+                                    -> join('co_so', 'phong.id_co_so', '=', 'co_so.id_co_so')
+                                    -> join('toa_nha', 'phong.id_toa_nha', '=', 'toa_nha.id_toa_nha')
+                                    -> join('tang', 'phong.id_tang', '=', 'tang.id_tang')
+                                    -> join('loai_phong', 'phong.id_loai_phong', 'loai_phong.id_loai_phong')
+                                    -> join('ca_hoc', 'booking.id_ca_hoc', '=', 'ca_hoc.id_ca_hoc')
+                                    -> join('users', 'booking.id_user', '=', 'users.id_user')
+                                    -> join('bo_mon', 'booking.id_bo_mon', '=', 'bo_mon.id_bo_mon')
+                                    -> orderBy('booking.created_at', 'desc')
+                                    -> get();
+                                    
+        $canceledRoom = Booking::where('booking_status', 2)
+                                    -> join('phong', 'booking.id_phong', '=', 'phong.id_phong')
+                                    -> join('co_so', 'phong.id_co_so', '=', 'co_so.id_co_so')
+                                    -> join('toa_nha', 'phong.id_toa_nha', '=', 'toa_nha.id_toa_nha')
+                                    -> join('tang', 'phong.id_tang', '=', 'tang.id_tang')
+                                    -> join('loai_phong', 'phong.id_loai_phong', 'loai_phong.id_loai_phong')
+                                    -> join('ca_hoc', 'booking.id_ca_hoc', '=', 'ca_hoc.id_ca_hoc')
+                                    -> join('users', 'booking.id_user', '=', 'users.id_user')
+                                    -> join('bo_mon', 'booking.id_bo_mon', '=', 'bo_mon.id_bo_mon')
+                                    -> orderBy('booking.created_at', 'desc')
+                                    -> get();
+        return view('admin/phongProgressed', compact('acceptedRoom', 'notAcceptedRoom', 'canceledRoom'));
     }
 
     /**
@@ -46,11 +96,10 @@ class BookedRoomController extends Controller
      * Accept booking room
      */
     public function acceptRoom($idBooking) {
-        $booking = Booking::where('id_booking', $idBooking)->first();
-        $accept = Booking::where('id_booking', $idBooking)->update(['booking_status' => 1]);
-        $phong = Phong::where('id_phong', $booking->id_phong)
-                    -> update(['phong_status' => 2]);
-        $bookingUpdated = Booking::where('id_booking', $idBooking)->first();
+        $booking = Booking::find($idBooking);
+        $booking->booking_status = 1;
+        $booking->save();
+        $bookingUpdated = Booking::find($idBooking);
         Mail::to($booking->getUser->email)->send(new ApproveRoom($bookingUpdated));
         return back();
     }
@@ -73,13 +122,11 @@ class BookedRoomController extends Controller
         $booking = Booking::find($idBooking);
         $ghi_chu_admin = ($request->has('ghi_chu_admin'))? ucfirst($input['ghi_chu_admin']):"";
         $booking->ghi_chu_admin = $ghi_chu_admin;
+        $booking->booking_status = 3;
         $booking->save();
-        $notAccept = Booking::where('id_booking', $idBooking)->update(['booking_status' => 2]);
-        $phong = Phong::where('id_phong', $booking->id_phong)
-                    -> update(['phong_status' => 0]);
-        $bookingUpdated = Booking::where('id_booking', $idBooking)->first();
+        $bookingUpdated = Booking::find($idBooking);
         Mail::to($booking->getUser->email)->send(new ApproveRoom($bookingUpdated));
-        return redirect(route('admin_index'));
+        return redirect(route('qldatphong.index'));
     }
 
     /**

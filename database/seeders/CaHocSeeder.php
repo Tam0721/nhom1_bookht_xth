@@ -13,51 +13,15 @@ class CaHocSeeder extends Seeder
      */
     public function run(): void
     {
-        // Thời gian bắt đầu của ca đầu tiên (7:15 AM)
-        $startHour = 7;
-        $startMinute = 15;
-
-        for ($i = 1; $i <= 6; $i++) {
-            // Tạo tên ca mới
-            $tenca = 'Ca ' . $i;
-
-            // Thời gian bắt đầu của ca hiện tại
-            $startTime = sprintf("%02d:%02d", $startHour, $startMinute);
-
-            // Cộng thêm 2 giờ (120 phút) vào thời gian bắt đầu để lấy thời gian kết thúc của ca hiện tại
-            $endHour = $startHour + 2;
-            $endMinute = $startMinute;
-            $endTime = sprintf("%02d:%02d", $endHour, $endMinute);
-
-            // Kiểm tra xem giá trị đã tồn tại trong cơ sở dữ liệu hay chưa
-            $existingRecord = DB::table('ca_hoc')->where('ten_ca_hoc', $tenca)->first();
-
-            // Nếu giá trị không tồn tại, thêm vào cơ sở dữ liệu
-            if (!$existingRecord) {
-                DB::table('ca_hoc')->insert([
-                    'ten_ca_hoc' => $tenca,
-                    'loai_ca_hoc' => rand(0, 1),
-                    'thoi_gian_bat_dau' => $startTime,
-                    'thoi_gian_ket_thuc' => $endTime,
-                ]);
-            }
-
-            // Cập nhật giờ bắt đầu cho ca tiếp theo (ít nhất 10 phút sau giờ kết thúc của ca trước đó)
-            if ($i == 2) {
-                // Nếu là ca thứ 2, thì chuyển sang ca thứ 3 (12 giờ)
-                $startHour = 12;
-                $startMinute = 0;
-            } else {
-                // Nếu không phải là ca thứ 2, thì chuyển sang ca tiếp theo (ít nhất 10 phút sau giờ kết thúc của ca trước đó)
-                $startHour = $endHour;
-                $startMinute = $endMinute + 10;
-            }
-
-            // Nếu số phút vượt quá 60, chuyển sang giờ tiếp theo và giảm đi 60 phút
-            if ($startMinute >= 60) {
-                $startHour += 1;
-                $startMinute -= 60;
-            }
-        }
+        DB::table('ca_hoc')->insert([
+            ['ten_ca_hoc' => 'Ca 1', 'loai_ca_hoc' => 1, 'thoi_gian_bat_dau' => '7:15:00', 'thoi_gian_ket_thuc' => '9:15:00', 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_ca_hoc' => 'Ca 2', 'loai_ca_hoc' => 1, 'thoi_gian_bat_dau' => '9:25:00', 'thoi_gian_ket_thuc' => '11:25:00', 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_ca_hoc' => 'Ca 3', 'loai_ca_hoc' => 1, 'thoi_gian_bat_dau' => '12:00:00', 'thoi_gian_ket_thuc' => '14:00:00', 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_ca_hoc' => 'Ca 4', 'loai_ca_hoc' => 1, 'thoi_gian_bat_dau' => '14:10:00', 'thoi_gian_ket_thuc' => '16:10:00', 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_ca_hoc' => 'Ca 5', 'loai_ca_hoc' => 1, 'thoi_gian_bat_dau' => '16:20:00', 'thoi_gian_ket_thuc' => '18:20:00', 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_ca_hoc' => 'Ca 6', 'loai_ca_hoc' => 1, 'thoi_gian_bat_dau' => '18:30:00', 'thoi_gian_ket_thuc' => '20:30:00', 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_ca_hoc' => 'Buổi sáng', 'loai_ca_hoc' => 2, 'thoi_gian_bat_dau' => '7:00:00', 'thoi_gian_ket_thuc' => '12:00:00', 'created_at' => Now(), 'updated_at' => Now()],
+            ['ten_ca_hoc' => 'Buổi chiều', 'loai_ca_hoc' => 2, 'thoi_gian_bat_dau' => '13:00:00', 'thoi_gian_ket_thuc' => '18:00:00', 'created_at' => Now(), 'updated_at' => Now()],
+        ]);
     }
 }
