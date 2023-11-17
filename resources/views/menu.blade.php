@@ -63,32 +63,32 @@
         <input class="button-timkiem" type="submit" value="Tìm kiếm">
     </div> --}}
     <form class="d-md-flex m-2" method="get" action="">
-        <div class="col-6">
-            <select name="coSo" id="">
+        <div class="dropdown">
+            <select class="btn text-primary border border-primary dropdown-toggle" name="coSo" id="">
                 <option value="0">Chọn Cơ sở</option>
                 @foreach ($coSo as $item)
                     <option value="{{ $item->id_co_so }}">{{ $item->ten_co_so }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="col-2">
-            <select name="toa" id="">
+        <div class="dropdown">
+            <select class="btn text-primary border border-primary dropdown-toggle" name="toa" id="">
                 <option value="0">Chọn Tòa</option>
                 @foreach ($toa as $item)
                     <option value="{{$item->id_toa_nha}}">{{$item->ten_toa_nha}}</option>
                 @endforeach
             </select>
         </div>
-        <div class="col-2">
-            <select name="tang" id="">
+        <div class="dropdown">
+            <select class="btn text-primary border border-primary dropdown-toggle" name="tang" id="">
                 <option value="0">Chọn Tầng</option>
                 @foreach ($tang as $item)
                     <option value="{{$item->id_tang}}">{{$item->ten_tang}}</option>
                 @endforeach
             </select>
         </div>
-        <div class="col-2">
-            <select name="loaiPhong" id="">
+        <div class="dropdown">
+            <select class="btn text-primary border border-primary dropdown-toggle" name="loaiPhong" id="">
                 <option value="0">Chọn Loại Phòng</option>
                 @foreach ($loaiPhong as $item)
                     <option value="{{$item->id_loai_phong}}">{{$item->ten_loai_phong}}</option>
@@ -96,6 +96,6 @@
             </select>
         </div>
         <br>
-        <button type="submit">Tìm kiếm</button>
+        <button type="submit" class="button-timkiem">Tìm kiếm</button>
     </form>
 </div>
