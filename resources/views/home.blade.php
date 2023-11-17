@@ -102,7 +102,7 @@
                                             } else {
                                                 $color = 'circle button-white';
                                             }
-                                            echo '<th class=""><button class="' . $color . '"></button></th>';
+                                            echo '<th colspan="3" class=""><button class="' . $color . '"></button></th>';
                                         }
                                     @endphp
                                 @endforeach
@@ -110,8 +110,9 @@
                         @endif
                     @endforeach
                 </thead>
-
+                {{-- {{ $phong->links() }} --}}
             </table>
+            
         </div>
         <section id="form">
             <form action="">
