@@ -40,7 +40,8 @@ use App\Http\Controllers\LSDatPhongController;
 //     return view('home');
 // });
 
-Route::get('/', [CalendarController::class, 'home'])->name('home');
+Route::get('', [CalendarController::class, 'home'])->name('home');
+Route::post('search',[CalendarController::class,'search'])->name('search');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
