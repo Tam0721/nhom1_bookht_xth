@@ -110,9 +110,10 @@
                         @endif
                     @endforeach
                 </thead>
-                {{-- {{ $phong->links() }} --}}
+               
             </table>
-            
+            <br>
+            {{ $phong->links() }}
         </div>
         <section id="form">
             <form action="">
