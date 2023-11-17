@@ -13,7 +13,6 @@ class Phong extends Model
     protected $fillable = 
     [
         'ten_phong',
-        'id_ca_hoc',
         'id_loai_phong',
         'id_co_so',
         'id_tang',
