@@ -20,6 +20,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\LSDatPhongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 //     return view('home');
 // });
 
-Route::get('/', [CalendarController::class, 'home']);
+Route::get('/', [CalendarController::class, 'home'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -51,10 +52,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware('auth')->group(function () {
-    Route::get('/lsdatphong', function () {
-    return view('lsdatphong');
-    })->name('ls');
-    Route::post('/huy-phong/{id}',[MailController::class,'sendMail'])->name('huyPhong');
+    Route::get('/lsdatphong', [LSDatPhongController::class,'index'])->name('ls');
+    // Route::post('/huy-phong/{id}',[MailController::class,'sendMail'])->name('huyPhong');
+    Route::get('/taoLSPhong', [LSDatPhongController::class,'create'])->name('create');
+    Route::post('/huy-phong/{id}',[LSDatPhongController::class,'update'])->name('huyPhong');
 }); 
 require __DIR__.'/auth.php';
 

@@ -51,7 +51,7 @@
             <div class="logo"><a href="/"><img src="/img/logo-fpt.png" alt=""></a></div>
             <ul class="menu">
                 <li><a href="/">TRANG CHỦ</a></li>
-                <li><a href="lsdatphong">LỊCH SỬ ĐẶT PHÒNG</a></li>
+                <li><a href="{{url('lsdatphong')}}">LỊCH SỬ ĐẶT PHÒNG</a></li>
                 <li><a href="#">ĐẶT PHÒNG</a></li>
             </ul>
             @guest
