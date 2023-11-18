@@ -25,7 +25,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\LSDatPhongController;
-
+use App\Http\Controllers\DatPhongController;
+use App\Http\Controllers\QuanLyPhongHocController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +46,7 @@ use App\Http\Controllers\LSDatPhongController;
 // });
 
 Route::get('', [CalendarController::class, 'home'])->name('home');
-Route::post('search',[CalendarController::class,'search'])->name('search');
+Route::post('search', [CalendarController::class, 'search'])->name('search');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -57,12 +58,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware('auth')->group(function () {
-    Route::get('/lsdatphong', [LSDatPhongController::class,'index'])->name('ls');
+    Route::get('/lsdatphong', [LSDatPhongController::class, 'index'])->name('ls');
     // Route::post('/huy-phong/{id}',[MailController::class,'sendMail'])->name('huyPhong');
-    Route::get('/taoLSPhong', [LSDatPhongController::class,'create'])->name('create');
-    Route::post('/huy-phong/{id}',[LSDatPhongController::class,'update'])->name('huyPhong');
+    Route::get('/taoLSPhong', [LSDatPhongController::class, 'create'])->name('create');
+    Route::post('/huy-phong/{id}', [LSDatPhongController::class, 'update'])->name('huyPhong');
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // route admin
 Route::get('qlphong', function () {
@@ -75,7 +76,7 @@ Route::get('qlthongtin', function () {
     return view('admin/qlthongtin');
 });
 Route::get('/qlthongtin', [UserController::class, 'index'])->name('users.index');
-Route::get('/admin/qlthongtin/{id}',[UserController::class,'delete'])->name('delete');
+Route::get('/admin/qlthongtin/{id}', [UserController::class, 'delete'])->name('delete');
 
 Route::get('huyAdmin', function () {
     return view('admin/huyAdmin');
@@ -123,7 +124,7 @@ route::prefix('/qltoa_nha')->group(
     }
 )->middleware(['admin', 'auth']);;
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->group(function () {
     Route::resource('qldatphong', (BookedRoomController::class));
     Route::get('admin/phong-da-xu-ly', [BookedRoomController::class, 'progressedRoom'])->name('qldatphong.progressed');
     Route::get('admin/qldatphong/accept/{id_booking}', [BookedRoomController::class, 'acceptRoom'])->name('admin.accept');
@@ -133,4 +134,25 @@ Route::get('/auth/google', function () {
     return Socialite::driver('google')->redirect();
 })->name('login-google');
 
-Route::get('/auth/google/callback', [AuthenticatedSessionController::class,'googleCallback']);
+Route::get('/auth/google/callback', [AuthenticatedSessionController::class, 'googleCallback']);
+
+// Quản lý phòng học
+Route::prefix('admin/quanlyphonghoc')->group(function () {
+    Route::get('/get-toa-nha/{id_co_so}', [QuanLyPhongHocController::class, 'getToaNha']);
+    Route::get('/get-tang/{id_toa_nha}', [QuanLyPhongHocController::class, 'getTang']);
+    Route::get('/', [QuanLyPhongHocController::class, 'index'])->name('quanlyphonghoc.index');
+    Route::get('/create', [QuanLyPhongHocController::class, 'show'])->name('quanlyphonghoc.show');
+    Route::post('/create', [QuanLyPhongHocController::class, 'store'])->name('quanlyphonghoc.store');
+    Route::delete('/delete/{id_phong}', [QuanLyPhongHocController::class, 'delete'])->name('quanlyphonghoc.delete');
+    Route::get('/edit/{id_phong}', [QuanLyPhongHocController::class, 'edit'])->name('quanlyphonghoc.edit');
+    Route::put('/update/{id_phong}', [QuanLyPhongHocController::class, 'update'])->name('quanlyphonghoc.update');
+});
+
+// đặt phòng
+Route::prefix('datphong')->group(function () {
+    Route::get('/get-toa-nha/{id_co_so}', [DatPhongController::class, 'getToaNha']);
+    Route::get('/get-tang/{id_toa_nha}', [DatPhongController::class, 'getTang']);
+    Route::get('/get-phong/{idCoSo}/{idToaNha}/{idTang}/{idLoaiPhong}', [DatPhongController::class, 'getPhong']);
+    Route::get('/', [DatPhongController::class, 'index'])->name('datphong.index');
+    Route::post('/create', [DatPhongController::class, 'store'])->name('datphong.create');
+});

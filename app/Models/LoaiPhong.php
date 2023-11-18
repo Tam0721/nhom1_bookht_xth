@@ -10,8 +10,10 @@ class LoaiPhong extends Model
     use HasFactory;
     protected $table = 'loai_phong';
     protected $primaryKey = 'id_loai_phong';
-    protected $fillable = 
+    protected $fillable =
     [
         'ten_loai_phong',
+        'created_at',
+        'updated_at'
     ];
 }
