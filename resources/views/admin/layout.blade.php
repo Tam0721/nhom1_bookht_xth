@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style2.css">
     <link rel="stylesheet" href="/css/footer.css">
     <title>Document</title>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -84,8 +84,10 @@
             <ul class="menu">
                 <li><a href="qlphong">QUẢN LÝ PHÒNG</a></li>
                 <li><a href="qlthongtin">QUẢN LÝ THÔNG TIN</a></li>
-                <li><a href="{{ route('qldatphong.index') }}">PHÒNG CHƯA XỬ LÝ</a></li>
-                <li><a href="{{ route('qldatphong.progressed') }}">PHÒNG ĐÃ XỬ LÝ</a></li>
+                <li><a href="qldatphong">QUẢN LÝ ĐẶT PHÒNG</a></li>
+                <li><a href="qlco_so">QUẢN LÝ CƠ SỞ</a></li>
+                <li><a href="qltoa_nha">QUẢN LÝ TÒA NHÀ</a></li>
+                <li><a href="qlca_hoc">QUẢN LÝ CA HỌC</a></li>
             </ul>
             <a class="button-dangnhap" href="/login">Đăng nhập</a>
         </nav>

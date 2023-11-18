@@ -29,7 +29,7 @@
             <button type="submit" class="btn btn-success me-1">Thêm Cơ sở</button>
             <a href="{{ route("co_so") }}">
                 <button class="btn btn-primary position-absolute" type="button"><i class="bi bi-plus-circle"></i>
-                    Back
+                    Quay lại
                 </button>
             </a>
         </form>
@@ -40,3 +40,4 @@
 </body>
 
 </html>
+

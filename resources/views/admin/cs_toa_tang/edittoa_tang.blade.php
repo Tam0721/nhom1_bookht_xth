@@ -48,7 +48,7 @@
 
                             <!-- Nút Submit để cập nhật thông tin -->
                             <button type="submit" class="btn btn-success">Cập Nhật</button>
-                            <a href="{{route('co_so')}}" class="btn btn-primary">Quay lại
+                            <a href="{{route('qltoa_nha')}}" class="btn btn-primary">Quay lại
                             </a>
                         </form>
 
