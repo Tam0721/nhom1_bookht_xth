@@ -51,7 +51,8 @@
             <div class="logo"><a href="/"><img src="/img/logo-fpt.png" alt=""></a></div>
             <ul class="menu">
                 <li><a href="/">TRANG CHỦ</a></li>
-                <li><a href="lsdatphong">LỊCH SỬ ĐẶT PHÒNG</a></li>
+                <li><a href="{{route('ls')}}">LỊCH SỬ ĐẶT PHÒNG</a></li>
+                <li><a href="#">ĐẶT PHÒNG</a></li>
             </ul>
             @guest
                 @if (Route::has('login'))
@@ -62,9 +63,6 @@
                 @endif --}}
             @else
                 <a class="button-dangnhap" style="width: 120px" href="{{ route('dashboard') }}">
-                    <p style="color: white">
-                        {{ Auth::user()->name }}
-                    </p>
                     <li>
                         <a href="{{ route('logout') }}"
                             onlick="event.preventDefault();document.getElementById('logout-form').submit();"> Đăng xuất</a>

@@ -12,14 +12,15 @@ use Illuminate\Queue\SerializesModels;
 class CancelRoom extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $liDo;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(string $liDo)
     {
         //
-
+        $this->liDo = $liDo;
+        
     }
 
     /**
@@ -28,7 +29,7 @@ class CancelRoom extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Hủy đặt phòng',
+            subject: 'HỦY ĐẶT PHÒNG',
         );
     }
 
@@ -39,6 +40,7 @@ class CancelRoom extends Mailable
     {
         return new Content(
             markdown: 'CancelMail.CancelRoom',
+       
         );
     }
 

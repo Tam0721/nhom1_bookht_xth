@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('toa_nha', function (Blueprint $table) {
             $table->tinyIncrements('id_toa_nha');
-            $table->string('ten_toa_nha', 255)->unique();
+            $table->string('ten_toa_nha', 255);
             $table->unsignedTinyInteger('id_co_so');
             $table->foreign('id_co_so')->references('id_co_so')->on('co_so')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
