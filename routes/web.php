@@ -15,8 +15,12 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TangController;
 
+
+use App\Http\Controllers\UserController;
+
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AdminController;
+>
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -70,6 +74,9 @@ Route::get('qldatphong', function () {
 Route::get('qlthongtin', function () {
     return view('admin/qlthongtin');
 });
+Route::get('/qlthongtin', [UserController::class, 'index'])->name('users.index');
+Route::get('/admin/qlthongtin/{id}',[UserController::class,'delete'])->name('delete');
+
 Route::get('huyAdmin', function () {
     return view('admin/huyAdmin');
 });
@@ -77,6 +84,7 @@ Route::get('huyUser', function () {
     return view('admin/huyUser');
 });
 //
+
 
 //ROUTE COSO_TOA_TANG
 Route::get('ql', [AdminController::class, 'index'])->name('admin_index')->middleware(['admin','auth']);
