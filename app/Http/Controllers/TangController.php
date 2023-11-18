@@ -72,6 +72,6 @@ class TangController extends Controller
     {
         Tang::where('id_tang', $id)->delete();
         // Trả về phản hồi dưới dạng JSON
-        return redirect()->back()->with('success', 'Thêm tòa và tầng thành công.');
+        return redirect()->back()->with('success', 'Xóa tầng thành công.');
     }
 }

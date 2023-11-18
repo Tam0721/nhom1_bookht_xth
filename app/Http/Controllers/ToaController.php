@@ -6,9 +6,6 @@ use App\Models\Coso;
 use App\Models\Toa;
 use App\Models\Tang;
 use Illuminate\Http\Request;
-use App\Mail\ApproveRoom;
-use App\Models\PhongModel as Phong;
-use App\Models\BookingModel as Booking;
 
 class ToaController extends Controller
 {
@@ -26,9 +23,9 @@ class ToaController extends Controller
             'toas' => $toas,
             'tangs' => $tangs,
             // 'cttoa_tang'=> $chitiet
+
         ];
-        dd($bookedRoom);
-        return view('admin.cs_toa_tang.qlycoso-toa-tang', $data);
+        return view('admin.cs_toa_tang.qlytoa_nha', $data);
     }
 
     //CONTROLLER TÒA TẦNG
@@ -135,6 +132,6 @@ class ToaController extends Controller
     {
         Toa::where('id_toa_nha', $id)->delete();
         Tang::where('id_toa_nha', $id)->delete();
-        return redirect()->back()->with('success', 'Thêm tòa và tầng thành công.');
+        return redirect()->back()->with('success', 'Xóa tòa nhà thành công.');
     }
 }

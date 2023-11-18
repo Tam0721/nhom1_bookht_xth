@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cahoc extends Model
 {
     protected $table = 'ca_hoc';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_ca_hoc';
     protected $fillable =
     [
-        'ten-ca-hoc',
-        'loai-ca-hoc'
+        'ten_ca_hoc',
+        'loai_ca_hoc',
+        'thoi_gian_bat_dau',
+        'thoi_gian_ket_thuc',
     ];
 }
