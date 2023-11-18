@@ -13,6 +13,8 @@ class Tang extends Model
     [
         'ten_tang',
         'id_toa_nha',
+        'created_at',
+        'updated_at'
 
     ];
 

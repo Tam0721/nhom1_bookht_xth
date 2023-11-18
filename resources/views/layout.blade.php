@@ -51,8 +51,8 @@
             <div class="logo"><a href="/"><img src="/img/logo-fpt.png" alt=""></a></div>
             <ul class="menu">
                 <li><a href="/">TRANG CHỦ</a></li>
-                <li><a href="{{route('ls')}}">LỊCH SỬ ĐẶT PHÒNG</a></li>
-                <li><a href="#">ĐẶT PHÒNG</a></li>
+                <li><a href="{{ route('ls') }}">LỊCH SỬ ĐẶT PHÒNG</a></li>
+                <li><a href="{{ route('datphong.index') }}">ĐẶT PHÒNG</a></li>
             </ul>
             @guest
                 @if (Route::has('login'))

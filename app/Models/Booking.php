@@ -11,7 +11,7 @@ class Booking extends Model
     use HasFactory;
     protected $table = 'booking';
     protected $primaryKey = 'id_booking';
-    protected $fillable = 
+    protected $fillable =
     [
         'ngay_dat',
         'ngay_to_chuc',
@@ -20,12 +20,17 @@ class Booking extends Model
         'ghi_chu_admin',
         'ly_do_huy',
         'so_luong',
+        'booking_status',
         'id_bo_mon',
         'id_user',
-        'id_phong'
+        'id_ca_hoc',
+        'id_phong',
+        'created_at',
+        'updated_at'
     ];
 
-    public function getUser() {
+    public function getUser()
+    {
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 }

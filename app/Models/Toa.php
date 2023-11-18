@@ -13,6 +13,8 @@ class Toa extends Model
     [
         'ten_toa_nha',
         'id_co_so',
+        'created_at',
+        'updated_at'
     ];
     public function tangs()
     {
