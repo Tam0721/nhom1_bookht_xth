@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('loai_phong', function (Blueprint $table) {
             $table->tinyIncrements('id_loai_phong');
-            $table->string('ten_loai_phong', 255)->unique();
+            $table->string('ten_loai_phong', 255);
             $table->timestamps();
         });
     }

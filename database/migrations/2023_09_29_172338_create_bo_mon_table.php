@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bo_mon', function (Blueprint $table) {
             $table->tinyIncrements('id_bo_mon');
-            $table->string('ten_bo_mon', 255)->unique();
+            $table->string('ten_bo_mon', 255);
             $table->timestamps();
         });
     }

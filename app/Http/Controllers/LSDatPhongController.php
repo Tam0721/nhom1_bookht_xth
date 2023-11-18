@@ -43,8 +43,10 @@ class LSDatPhongController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    public function create(){
+        $user = User::orderBy('id_user', 'DESC')->limit(1)->get('id_user');
+        // dd($user[0]['id_user']);
+        $id_user = $user[0]['id_user'];
         $startHour = 7;
         $startMinute = 15;
     
@@ -62,7 +64,7 @@ class LSDatPhongController extends Controller
     
             // Kiểm tra xem giá trị đã tồn tại trong cơ sở dữ liệu hay chưa
             $existingRecord = DB::table('ca_hoc')->where('ten_ca_hoc', $tenca)->first();
-    
+            
             // Nếu giá trị không tồn tại, thêm vào cơ sở dữ liệu
             if (!$existingRecord) {
                 DB::table('ca_hoc')->insert([
@@ -131,7 +133,6 @@ class LSDatPhongController extends Controller
                     'id_co_so' => 1, 
                     'id_tang' => 1, 
                     'id_toa_nha' => 1,
-                    'id_ca_hoc' => 1, 
                     'created_at' => Now(), 
                     'updated_at' => Now(),
                 ],
@@ -143,10 +144,10 @@ class LSDatPhongController extends Controller
                     'thoi_gian_bat_dau' => '7:30:00',
                     'su_kien' => 'Event '.'fd',
                     'id_bo_mon' => 1,
-                    'id_user' => 3,
+                    'id_user' =>$id_user,
                     'id_phong' => '1', 
-                    'created_at' => Now(), 
-                    'updated_at' => Now(),
+                    'id_ca_hoc' => 1, 
+   
                 ],
             ]);
         }
