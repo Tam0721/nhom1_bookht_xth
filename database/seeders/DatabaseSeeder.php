@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TangSeeder::class);
         $this->call(PhongSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(BookingSeeder::class);
+        // $this->call(BookingSeeder::class);
     }
 }

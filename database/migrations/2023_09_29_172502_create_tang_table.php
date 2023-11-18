@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tang', function (Blueprint $table) {
             $table->tinyIncrements('id_tang');
-            $table->string('ten_tang', 10)->unique();
+            $table->string('ten_tang', 10);
             $table->unsignedTinyInteger('id_toa_nha');
-            $table->foreign('id_toa_nha')->references('id_toa_nha')->on('toa_nha')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('id_toa_nha')->references('id_toa_nha')->on('toa_nha')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

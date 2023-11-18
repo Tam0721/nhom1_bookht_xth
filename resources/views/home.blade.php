@@ -84,7 +84,7 @@
                             </tr>
                         @else
                             <tr class="ca">
-                                <th class="mau-xanhla">{{ $item->ten_toa_nha . $item->ten_tang . $item->ten_phong }}</th>
+                                <th class="mau-xanhla">{{ $item->ten_phong }}</th>
                                 @foreach ($calendar as $time)
                                     @php
                                         for ($i = 1; $i <= 2; $i++) {

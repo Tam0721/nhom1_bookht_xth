@@ -53,7 +53,7 @@
             <div class="logo"><img src="/img/logo-fpt.png" alt=""></div>
             <ul class="menu">
                 <li><a href="/">TRANG CHỦ</a></li>
-                <li><a href="/admin-lichsudatphong.html">LỊCH SỬ ĐẶT PHÒNG</a></li>
+                <li><a href="{{ route('ls') }}">LỊCH SỬ ĐẶT PHÒNG</a></li>
             </ul>
             {{-- <input class="button-dangnhap" type="submit" value="Đăng nhập"> --}}
             {{-- <a href="{{route('login')}}" class="button-dangnhap">Đăng nhập</a> --}}

@@ -106,8 +106,9 @@ route::prefix('admin/co_so')->group(function () {
     Route::delete('/xoa-tang/{id}', [TangController::class, 'destroy_tang'])->name('destroy_tang');
 })->middleware(['admin','auth']);
 
-Route::prefix('admin/qldatphong')->group(function() {
-    Route::resource('admin/qldatphong', (BookedRoomController::class));
+Route::prefix('admin')->group(function() {
+    Route::resource('qldatphong', (BookedRoomController::class));
+    Route::get('admin/phong-da-xu-ly', [BookedRoomController::class, 'progressedRoom'])->name('qldatphong.progressed');
     Route::get('admin/qldatphong/accept/{id_booking}', [BookedRoomController::class, 'acceptRoom'])->name('admin.accept');
 })->middleware(['admin', 'auth']);
 
