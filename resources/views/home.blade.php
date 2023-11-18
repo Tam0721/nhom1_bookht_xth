@@ -13,13 +13,9 @@
                 <thead>
                     <tr class="head">
                         <th class="mau-xanhla">Thứ</th>
-                        <th class="mau-da" colspan="6">Thứ 2</th>
-                        <th class="mau-xanh" colspan="6">Thứ 3</th>
-                        <th class="mau-da" colspan="6">Thứ 4</th>
-                        <th class="mau-xanh" colspan="6">Thứ 5</th>
-                        <th class="mau-da" colspan="6">Thứ 6</th>
-                        <th class="mau-xanh" colspan="6">Thứ 7</th>
-                        <th class="mau-da" colspan="6">Chủ nhật</th>
+                        @foreach ($calendar as $item)
+                            <th class="mau-da" colspan="6">{{$item['Thu']}}</th>
+                        @endforeach                        
                     </tr>
                     <tr class="head">
                         <th class="mau-xanhla">Ngày</th>
