@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('app')
 @section('noidung')
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="/css/style2.css">
 
     <main>
         @if ($errors->has('id_co_so'))
@@ -94,6 +94,18 @@
                             </select>
                         </div>
                     </div>
+                    <div class="mb-3 d-flex justify-content-center">
+                        <div class="w-75">
+                            <label class="form-label text-primary">Bộ môn</label>
+                            <select name="id_bo_mon" id="id_bo_mon" class="form-select">
+                                <option value="" disabled selected>Chọn bộ môn</option>
+                                @foreach ($bo_mon as $item)
+                                    <option value="{{ $item->id_bo_mon }}">
+                                        {{ $item->ten_bo_mon }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="col mx-auto">
                     <div class="mb-3 d-flex justify-content-center">
@@ -124,10 +136,6 @@
                             <label class="form-label text-primary">Ca học</label>
                             <select name="id_ca_hoc" id="id_ca_hoc" class="form-select">
                                 <option value="" disabled selected>Chọn ca học</option>
-                                @foreach ($ca_hoc as $item)
-                                    <option value="{{ $item->id_ca_hoc }}">
-                                        {{ $item->ten_ca_hoc }}</option>
-                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -235,6 +243,75 @@
                         });
                     }
                 });
+            });
+        });
+
+        // {{-- get ca học --}}
+        $(document).ready(function() {
+            // Thêm sự kiện chọn vào trường select đầu tiên
+            $('#id_loai_phong').change(function() {
+                // Lấy giá trị của option được chọn
+                var selectedLoaiPhongId = $(this).val();
+
+                if (selectedLoaiPhongId == 1) {
+                    $.ajax({
+                        url: '/datphong/get-ca-hoc/' +
+                            selectedLoaiPhongId, // Đặt URL của endpoint để lấy danh sách tòa nhà
+                        method: 'GET',
+                        success: function(response) {
+                            // Xóa các tùy chọn hiện tại trong trường select tòa nhà
+                            $('#id_ca_hoc').empty();
+
+                            // Thêm mặc định và sau đó thêm các tùy chọn mới từ response vào trường select tòa nhà
+                            $('#id_ca_hoc').append(
+                                '<option value="" disabled selected>Chọn ca học</option>');
+                            $.each(response, function(index, caHoc) {
+                                $('#id_ca_hoc').append('<option value="' + caHoc
+                                    .id_ca_hoc + '">' + caHoc.ten_ca_hoc +
+                                    '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: '/datphong/get-buoi-hoc/' +
+                            selectedLoaiPhongId, // Đặt URL của endpoint để lấy danh sách tòa nhà
+                        method: 'GET',
+                        success: function(response) {
+                            // Xóa các tùy chọn hiện tại trong trường select tòa nhà
+                            $('#id_ca_hoc').empty();
+
+                            // Thêm mặc định và sau đó thêm các tùy chọn mới từ response vào trường select tòa nhà
+                            $('#id_ca_hoc').append(
+                                '<option value="" disabled selected>Chọn ca học</option>');
+                            $.each(response, function(index, caHoc) {
+                                $('#id_ca_hoc').append('<option value="' + caHoc
+                                    .id_ca_hoc + '">' + caHoc.ten_ca_hoc +
+                                    '</option>');
+                            });
+                        }
+                    });
+                }
+
+                // Gửi yêu cầu Ajax để lấy danh sách tòa nhà liên quan đến cơ sở đã chọn
+                // $.ajax({
+                //     url: '/datphong/get-ca-hoc/' +
+                //         selectedLoaiPhongId, // Đặt URL của endpoint để lấy danh sách tòa nhà
+                //     method: 'GET',
+                //     success: function(response) {
+                //         // Xóa các tùy chọn hiện tại trong trường select tòa nhà
+                //         $('#id_ca_hoc').empty();
+
+                //         // Thêm mặc định và sau đó thêm các tùy chọn mới từ response vào trường select tòa nhà
+                //         $('#id_ca_hoc').append(
+                //             '<option value="" disabled selected>Chọn ca học</option>');
+                //         $.each(response, function(index, caHoc) {
+                //             $('#id_ca_hoc').append('<option value="' + caHoc
+                //                 .id_ca_hoc + '">' + caHoc.ten_ca_hoc +
+                //                 '</option>');
+                //         });
+                //     }
+                // });
             });
         });
     </script>

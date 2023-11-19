@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Toa;
 use App\Models\Coso;
 use App\Models\Tang;
@@ -19,10 +20,9 @@ class LSDatPhongController extends Controller
      */
     public function index()
     {       
-        $users = User::all();
-        foreach($users as $user){
-            $lsDatPhongs = Booking::where('id_user',$user->id_user)->orderBy("id_booking","desc")->paginate(5);
-        }
+        $id_user = Auth::user()->id_user;
+        $lsDatPhongs = Booking::where('id_user',$id_user)->orderBy("id_booking","desc")->paginate(5);
+
         $toas = Toa::all();
         $tangs = Tang::all();
         $coSos = Coso::all();

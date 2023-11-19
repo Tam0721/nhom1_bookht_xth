@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\CoSo;
 use App\Models\Tang;
@@ -11,6 +12,7 @@ use App\Models\LoaiPhong;
 use App\Models\Phong;
 use App\Models\CaHoc;
 use App\Models\Booking;
+use App\Models\BoMon;
 
 class DatPhongController extends Controller
 {
@@ -18,8 +20,9 @@ class DatPhongController extends Controller
     {
         $co_so = CoSo::all();
         $loai_phong = LoaiPhong::all();
-        $ca_hoc = CaHoc::all();
-        return view('datphong', compact('co_so', 'loai_phong', 'ca_hoc'));
+        $bo_mon = BoMon::all();
+        // $ca_hoc = CaHoc::all();
+        return view('datphong', compact('co_so', 'loai_phong', 'bo_mon'));
     }
 
     public function getToaNha($idCoSo)
@@ -51,6 +54,16 @@ class DatPhongController extends Controller
 
         // Trả về danh sách tòa nhà dưới dạng JSON
         return response()->json($idPhong);
+    }
+
+    public function getCaHoc() {
+        $idCaHoc = CaHoc::where('loai_ca_hoc', 1)->get();
+        return response()->json($idCaHoc);
+    }
+
+    public function getBuoiHoc() {
+        $idBuoiHoc = CaHoc::where('loai_ca_hoc', 2)->get();
+        return response()->json($idBuoiHoc);
     }
 
     public function store(Request $request)
@@ -108,14 +121,14 @@ class DatPhongController extends Controller
         // }
 
         // Lấy id_user từ session
-        $id_user = session('id_user');
+        $id_user = Auth::user()->id_user;
 
         // tạo đối tượng mới
         $booking = new Booking;
         // lưu thông tin các trường cần cập nhật
         $booking->ngay_dat = now();
         $booking->id_user = $id_user; // Save id_user from session
-        $booking->fill($fillableData, ['ngay_dat', 'ngay_to_chuc', 'thoi_gian_bat_dau', 'su_kien', 'so_luong', 'id_phong', 'id_ca_hoc', 'id_user']);
+        $booking->fill($fillableData, ['ngay_dat', 'ngay_to_chuc', 'thoi_gian_bat_dau', 'su_kien', 'so_luong', 'id_phong', 'id_ca_hoc', 'id_bo_mon', 'id_user']);
         $booking->save();
 
         // hiển thị tên phòng được lưu

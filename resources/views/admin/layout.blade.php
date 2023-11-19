@@ -84,12 +84,31 @@
             <ul class="menu">
                 <li><a href="{{ route('quanlyphonghoc.index') }}">QUẢN LÝ PHÒNG</a></li>
                 <li><a href="qlthongtin">QUẢN LÝ THÔNG TIN</a></li>
-                <li><a href="qldatphong">QUẢN LÝ ĐẶT PHÒNG</a></li>
                 <li><a href="qlco_so">QUẢN LÝ CƠ SỞ</a></li>
                 <li><a href="qltoa_nha">QUẢN LÝ TÒA NHÀ</a></li>
                 <li><a href="qlca_hoc">QUẢN LÝ CA HỌC</a></li>
+                <li><a href="{{ route('qldatphong.index') }}">PHÒNG CHƯA XỬ LÝ</a></li>
+                <li><a href="{{ route('qldatphong.progressed') }}">PHÒNG ĐÃ XỬ LÝ</a></li>
             </ul>
-            <a class="button-dangnhap" href="/login">Đăng nhập</a>
+            {{-- <a class="button-dangnhap" href="/login">Đăng nhập</a> --}}
+            @guest
+                @if (Route::has('login'))
+                    <a class="button-dangnhap" href="{{ route('login') }}">Đăng nhập</a>
+                @endif
+                {{-- @if (Route::has('register'))
+                    <a class="button-dangnhap" href="{{ route('register') }}">Đăng ký</a>
+                @endif --}}
+            @else
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="button-dangnhap" type="submit"
+                     {{-- href="{{ route('logout') }}"
+                    onlick="event.preventDefault();document.getElementById('logout-form').submit();" --}}
+                    >
+                    Đăng xuất
+                </button>
+                </form>
+            @endguest
         </nav>
         <br>
         @yield('noidung')

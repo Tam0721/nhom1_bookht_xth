@@ -1,70 +1,7 @@
 <div class="search">
-    {{-- <div class="dropdown">
-        <button class="btn text-primary border border-primary dropdown-toggle" type="button" id="dropdownMenu2"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            CƠ SỞ
-        </button>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li>
-                @foreach ($coso as $cs)
-                    <button class="dropdown-item" type="button">{{ $cs->ten_co_so }}</button>
-                @endforeach
-            </li>
-        </ul>
-    </div>
-    <div class="dropdown">
-        <button class="btn text-primary border border-primary dropdown-toggle" type="button" id="dropdownMenu2"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            TÒA
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li>
-                @foreach ($toa as $t)
-                    <button class="dropdown-item" type="button">{{ $t->ten_toa_nha }}</button>
-                @endforeach
-            </li>
-
-        </ul>
-    </div>
-    <div class="dropdown">
-        <button class="btn text-primary border border-primary dropdown-toggle" type="button" id="dropdownMenu2"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            TẦNG
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li>
-                @foreach ($tang as $tag)
-                    <button class="dropdown-item" type="button">{{ $tag->ten_tang }}</button>
-                @endforeach
-            </li>
-
-        </ul>
-    </div>
-    <div class="dropdown">
-        <button class="btn text-primary border border-primary dropdown-toggle" type="button" id="dropdownMenu2"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            LOẠI PHÒNG
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><button class="dropdown-item" type="button">Phòng học</button></li>
-            <li><button class="dropdown-item" type="button">Xưởng thực hành</button></li>
-            <li><button class="dropdown-item" type="button">Hội trường</button></li>
-        </ul>
-    </div>
-    <div class="dropdown">
-        <button class="btn text-primary border border-primary" type="button" id="datepicker2">
-            THỜI GIAN
-        </button>
-
-
-    </div>
-    <div class="dropdown">
-        <input class="button-timkiem" type="submit" value="Tìm kiếm">
-    </div> --}}
     <form class="d-md-flex m-2" method="get" action="">
         <div class="dropdown">
-            <select class="btn text-primary border border-primary dropdown-toggle" name="coSo" id="">
+            <select class="btn text-primary border border-primary dropdown-toggle" name="coSo" id="id_co_so">
                 <option value="0">Chọn Cơ sở</option>
                 @foreach ($coSo as $item)
                     <option value="{{ $item->id_co_so }}">{{ $item->ten_co_so }}</option>
@@ -72,19 +9,16 @@
             </select>
         </div>
         <div class="dropdown">
-            <select class="btn text-primary border border-primary dropdown-toggle" name="toa" id="">
+            <select class="btn text-primary border border-primary dropdown-toggle" name="toa" id="id_toa_nha">
                 <option value="0">Chọn Tòa</option>
-                @foreach ($toa as $item)
+                {{-- @foreach ($toa as $item)
                     <option value="{{$item->id_toa_nha}}">{{$item->ten_toa_nha}}</option>
-                @endforeach
+                @endforeach --}}
             </select>
         </div>
         <div class="dropdown">
-            <select class="btn text-primary border border-primary dropdown-toggle" name="tang" id="">
+            <select class="btn text-primary border border-primary dropdown-toggle" name="tang" id="id_tang">
                 <option value="0">Chọn Tầng</option>
-                @foreach ($tang as $item)
-                    <option value="{{$item->id_tang}}">{{$item->ten_tang}}</option>
-                @endforeach
             </select>
         </div>
         <div class="dropdown">
@@ -99,3 +33,62 @@
         <button type="submit" class="button-timkiem">Tìm kiếm</button>
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            // Thêm sự kiện chọn vào trường select đầu tiên
+            $('#id_co_so').change(function() {
+                // Lấy giá trị của option được chọn
+                var selectedCoSoId = $(this).val();
+
+                // Gửi yêu cầu Ajax để lấy danh sách tòa nhà liên quan đến cơ sở đã chọn
+                $.ajax({
+                    url: '/get-toa-nha/' + selectedCoSoId, // Đặt URL của endpoint để lấy danh sách tòa nhà
+                    method: 'GET',
+                    success: function(response) {
+                        // Xóa các tùy chọn hiện tại trong trường select tòa nhà
+                        $('#id_toa_nha').empty();
+
+                        // Thêm mặc định và sau đó thêm các tùy chọn mới từ response vào trường select tòa nhà
+                        $('#id_toa_nha').append(
+                            '<option value="" hidden selected>Chọn tòa nhà</option>'
+                        );
+
+                        $.each(response, function(index, toaNha) {
+                            $('#id_toa_nha').append(
+                                '<option value="' + toaNha.id_toa_nha + '">' + toaNha.ten_toa_nha + '</option>'
+                            );
+                        });
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            // Thêm sự kiện chọn vào trường select đầu tiên
+            $('#id_toa_nha').change(function() {
+                // Lấy giá trị của option được chọn
+                var selectedToaNhaId = $(this).val();
+
+                // Gửi yêu cầu Ajax để lấy danh sách tòa nhà liên quan đến cơ sở đã chọn
+                $.ajax({
+                    url: '/get-tang/' + selectedToaNhaId, // Đặt URL của endpoint để lấy danh sách tòa nhà
+                    method: 'GET',
+                    success: function(response) {
+                        // Xóa các tùy chọn hiện tại trong trường select tòa nhà
+                        $('#id_tang').empty();
+
+                        // Thêm mặc định và sau đó thêm các tùy chọn mới từ response vào trường select tòa nhà
+                        $('#id_tang').append(
+                            '<option value="" hidden selected>Chọn tầng</option>');
+                        $.each(response, function(index, tang) {
+                            $('#id_tang').append(
+                                '<option value="' + tang.id_tang + '">' + tang.ten_tang + '</option>'
+                            );
+                        });
+                    }
+                });
+            });
+        });
+</script>

@@ -46,6 +46,8 @@ use App\Http\Controllers\QuanLyPhongHocController;
 // });
 
 Route::get('', [CalendarController::class, 'home'])->name('home');
+Route::get('/get-toa-nha/{id_co_so}', [MenuController::class, 'getToaNha']);
+Route::get('/get-tang/{id_toa_nha}', [MenuController::class, 'getTang']);
 Route::post('search', [CalendarController::class, 'search'])->name('search');
 
 Route::get('/dashboard', function () {
@@ -75,7 +77,7 @@ Route::get('qldatphong', function () {
 Route::get('qlthongtin', function () {
     return view('admin/qlthongtin');
 });
-Route::get('/qlthongtin', [UserController::class, 'index'])->name('users.index');
+Route::get('admin/qlthongtin', [UserController::class, 'index'])->name('users.index');
 Route::get('/admin/qlthongtin/{id}', [UserController::class, 'delete'])->name('delete');
 
 Route::get('huyAdmin', function () {
@@ -88,7 +90,7 @@ Route::get('huyUser', function () {
 
 
 //ROUTE CA_HOC
-route::prefix('qlca_hoc')->group(function () {
+route::prefix('admin/qlca_hoc')->group(function () {
     Route::get('', [CahocController::class, 'index'])->name('cahoc');
     Route::get('/create', [CahocController::class, 'create'])->name('create_cahoc');
     Route::post('qlca_hoc', [CahocController::class, 'store'])->name('add_cahoc');
@@ -98,7 +100,7 @@ route::prefix('qlca_hoc')->group(function () {
 })->middleware(['admin', 'auth']);;
 
 //ROUTE COSO_TOA_TANG
-route::prefix('qlco_so')->group(function () {
+route::prefix('admin/qlco_so')->group(function () {
     Route::get('', [CosoController::class, 'index'])->name('co_so');
     Route::get('/create', [CosoController::class, 'create_cs'])->name('create_cs');
     Route::post('qlco_so', [CosoController::class, 'store_cs'])->name('add_cs');
@@ -107,7 +109,7 @@ route::prefix('qlco_so')->group(function () {
     Route::delete('/{id}', [CosoController::class, 'destroy_cs'])->name('del_cs');
 })->middleware(['admin', 'auth']);;
 
-route::prefix('/qltoa_nha')->group(function () {
+route::prefix('admin/qltoa_nha')->group(function () {
     Route::get('', [ToaController::class, 'index'])->name('qltoa_nha');
     Route::get('/add', [ToaController::class, 'create_toa'])->name('create_tt');
     Route::post('qltoa_nha', [ToaController::class, 'store_toa'])->name('add_tt');
@@ -115,7 +117,7 @@ route::prefix('/qltoa_nha')->group(function () {
     Route::post('/{id}', [ToaController::class, 'update_toa'])->name('update_tt');
     Route::delete('/{id}', [ToaController::class, 'destroy_toa'])->name('del_tt');
 })->middleware(['admin', 'auth']);;
-route::prefix('/qltoa_nha')->group(
+route::prefix('admin/qltoa_nha')->group(
     function () {
 
         Route::get('/add_tang/{id}', [TangController::class, 'create_tang'])->name('create_tang');
@@ -149,10 +151,12 @@ Route::prefix('admin/quanlyphonghoc')->group(function () {
 });
 
 // đặt phòng
-Route::prefix('datphong')->group(function () {
+Route::prefix('datphong')->middleware('auth')->group(function () {
     Route::get('/get-toa-nha/{id_co_so}', [DatPhongController::class, 'getToaNha']);
     Route::get('/get-tang/{id_toa_nha}', [DatPhongController::class, 'getTang']);
     Route::get('/get-phong/{idCoSo}/{idToaNha}/{idTang}/{idLoaiPhong}', [DatPhongController::class, 'getPhong']);
+    Route::get('/get-ca-hoc/{idLoaiPhong}', [DatPhongController::class, 'getCaHoc']);
+    Route::get('/get-buoi-hoc/{idLoaiPhong}', [DatPhongController::class, 'getBuoiHoc']);
     Route::get('/', [DatPhongController::class, 'index'])->name('datphong.index');
     Route::post('/create', [DatPhongController::class, 'store'])->name('datphong.create');
 });
