@@ -41,6 +41,7 @@ use App\Http\Controllers\LSDatPhongController;
 // });
 
 Route::get('', [CalendarController::class, 'home'])->name('home');
+Route::get('/get-tang/{id_toa_nha}', [MenuController::class, 'getTang']);
 Route::post('search',[CalendarController::class,'search'])->name('search');
 
 Route::get('/dashboard', function () {
@@ -79,7 +80,7 @@ Route::get('huyUser', function () {
 //
 
 //ROUTE COSO_TOA_TANG
-Route::get('ql', [AdminController::class, 'index'])->name('admin_index')->middleware(['admin','auth']);
+// Route::get('ql', [AdminController::class, 'index'])->name('admin_index')->middleware(['admin','auth']);
 
 route::prefix('admin/co_so')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('co_so');

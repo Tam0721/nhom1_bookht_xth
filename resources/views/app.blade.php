@@ -71,7 +71,8 @@
                 </form>
             @endguest
         </nav>
-@include('menu')
+        @yield('menu', '')
+
         @yield('noidung','')
 
 

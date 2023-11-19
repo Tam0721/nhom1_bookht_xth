@@ -24,5 +24,12 @@ class MenuController extends Controller
         $tang=DB::table('tang')->get();
         return view('menu',['tang'=>$tang]);
     }
+    public function getTang($idToaNha)
+    {
+        // Lấy danh sách tòa nhà dựa trên id của cơ sở
+        $idTang = DB::table('tang')->where('id_toa_nha', $idToaNha)->get();
 
+        // Trả về danh sách tòa nhà dưới dạng JSON
+        return response()->json($idTang);
+    }
 }

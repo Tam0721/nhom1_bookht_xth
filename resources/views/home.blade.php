@@ -6,6 +6,11 @@
     use App\models\tang;
 @endphp
 @extends('app')
+
+@section('menu')
+    @include('menu')
+@endsection
+
 @section('noidung')
     <main>
         <div class="timetable">

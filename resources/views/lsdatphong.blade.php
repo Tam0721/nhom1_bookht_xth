@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('app')
 @section('noidung')
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="/css/style2.css">
     <div class="contain">
         <div class="container">
             @if(session('success'))
@@ -18,7 +18,7 @@
             </script>
             @endif   
             {{--  --}}
-        <a class="btn text-primary" href="{{ route('create') }}">Tạo data</a>
+        {{-- <a class="btn text-primary" href="{{ route('create') }}">Tạo data</a> --}}
         {{--  --}}
     </div>
         <div class="timetable">
@@ -99,19 +99,49 @@
                                 @endforeach 
                             </th>
                             <th>{{ $lsDatPhong->id_phong }}</th>
-                            <th class="{{ $lsDatPhong->booking_status == 0 ? '' : 'd-none' }}">{{ $lsDatPhong->booking_status == 0 ? ' Chờ duyệt' : 'Đã duyệt' }} </th>
-                            <th class="{{ $lsDatPhong->booking_status > 0 ? '' : 'd-none' }}">{{ $lsDatPhong->booking_status == 1 ? 'Đã duyệt' : 'Đã hủy' }} </th>
+                            {{-- <th class="{{ $lsDatPhong->booking_status == 0 ? '' : 'd-none' }}">
+                                {{ $lsDatPhong->booking_status == 0 ? ' Chờ duyệt' : 'Đã duyệt' }}
+                            </th>
+                            <th class="{{ $lsDatPhong->booking_status > 0 ? '' : 'd-none' }}">
+                                {{ $lsDatPhong->booking_status == 1 ? 'Đã duyệt' : 'Đã hủy' }} 
+                            </th> --}}
+                            <th>
+                                @if ($lsDatPhong->booking_status == 0)
+                                    {{ 'Chờ duyệt' }}
+                                @elseif($lsDatPhong->booking_status == 1)
+                                    {{ 'Đã duyệt' }}
+                                @elseif($lsDatPhong->booking_status == 2)
+                                    {{ 'Đã hủy' }}
+                                @elseif($lsDatPhong->booking_status == 3)
+                                    {{ 'Không duyệt' }}
+                                @endif
+                            </th>
                             <th>{{ $lsDatPhong->ly_do_huy}}</th>
                             <th>{{ $lsDatPhong->ghi_chu_admin}}</th>
                             <th>{{ $lsDatPhong->su_kien }}</th>
                             <th>
                                 <div class="dropdown">
                                     <div class="dropdown-content">
-                                        <a href="javascript:void(0)" class="btn d-none m-0 p-0" id="datPhong">Đặt lại</a>
-                                        <button type="button" class="btn m-0 p-0 {{$lsDatPhong->booking_status == 0 ? 'text-primary' : 'disabled'}}" data-bs-toggle="modal"
+                                        {{-- <a href="javascript:void(0)" class="btn d-none m-0 p-0" id="datPhong">Đặt lại</a> --}}
+                                        {{-- <button type="button" class="btn m-0 p-0 {{$lsDatPhong->booking_status == 0 ? 'text-primary' : 'disabled'}}" data-bs-toggle="modal"
                                             data-bs-target="#staticReasonCancel-{{ $lsDatPhong->id_booking }}">
                                             Hủy phòng
-                                        </button>
+                                        </button> --}}
+                                        @if ($lsDatPhong->booking_status == 0)
+                                            <button type="button" class="btn m-0 p-0 text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#staticReasonCancel-{{ $lsDatPhong->id_booking }}">
+                                                Hủy phòng
+                                            </button>
+                                        @elseif($lsDatPhong->booking_status == 1)
+                                            <button type="button" class="btn m-0 p-0 text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#staticReasonCancel-{{ $lsDatPhong->id_booking }}">
+                                                Hủy phòng
+                                            </button>
+                                        @elseif($lsDatPhong->booking_status == 2)
+                                            {{ 'Đã hủy' }}
+                                        @elseif($lsDatPhong->booking_status == 3)
+                                            {{ 'Không duyệt' }}
+                                        @endif
                                         {{-- <a href="{{ route('huyPhong') }}"></a> --}}
                                     </div>
                                 </div>
