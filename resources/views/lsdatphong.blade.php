@@ -17,9 +17,6 @@
                 }, 8000);
             </script>
             @endif   
-            {{--  --}}
-        <a class="btn text-primary" href="{{ route('create') }}">Tạo data</a>
-        {{--  --}}
     </div>
         <div class="timetable">
             <table>
