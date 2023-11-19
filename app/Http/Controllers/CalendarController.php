@@ -10,6 +10,7 @@ use App\Models\Coso;
 use App\Models\Tang;
 use App\Models\Toa;
 use App\Models\LoaiPhong;
+use App\Models\BoMon;
 
 class CalendarController extends Controller
 {
@@ -76,6 +77,7 @@ class CalendarController extends Controller
         $toa = Toa::all();
         $tang = Tang::all();
         $loaiPhong = LoaiPhong::all();
+        $boMon = BoMon::all();
         // Lặp qua từng ngày trong tuần
         for ($day = 0; $day < 7; $day++) {
             $date = $DayOfWeek->copy()->addDays($day);
@@ -108,7 +110,9 @@ class CalendarController extends Controller
         if(!empty($request->toa)){
             $phong->where('phong.id_toa_nha',$request->toa);
         }
+        
         $phong = $phong->paginate(25)->withQueryString();
-        return view('home', compact('calendar','phong','coSo','toa','tang','loaiPhong'));
+        // dd($phong);
+        return view('home', compact('calendar','phong','coSo','toa','tang','loaiPhong','boMon'));
     }
 }

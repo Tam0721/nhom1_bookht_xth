@@ -27,6 +27,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\LSDatPhongController;
 use App\Http\Controllers\DatPhongController;
 use App\Http\Controllers\QuanLyPhongHocController;
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,6 +88,7 @@ Route::get('huyUser', function () {
     return view('admin/huyUser');
 });
 //
+
 
 
 //ROUTE CA_HOC
@@ -160,3 +162,5 @@ Route::prefix('datphong')->middleware('auth')->group(function () {
     Route::get('/', [DatPhongController::class, 'index'])->name('datphong.index');
     Route::post('/create', [DatPhongController::class, 'store'])->name('datphong.create');
 });
+
+Route::post('/booking',[BookingController::class,'storeBooking'])->name('booking');

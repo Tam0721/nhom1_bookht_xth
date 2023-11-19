@@ -19,8 +19,8 @@
                     <tr class="head">
                         <th class="mau-xanhla">Thứ</th>
                         @foreach ($calendar as $item)
-                            <th class="mau-da" colspan="6">{{$item['Thu']}}</th>
-                        @endforeach                        
+                            <th class="mau-da" colspan="6">{{ $item['Thu'] }}</th>
+                        @endforeach
                     </tr>
                     <tr class="head">
                         <th class="mau-xanhla">Ngày</th>
@@ -68,17 +68,20 @@
                                                 ->where('id_phong', $item->id_phong)
                                                 ->where('id_ca_hoc', $i)
                                                 ->first();
+                                            $caHoc = cahoc::find($i);
                                             if ($booking) {
                                                 if ($booking->booking_status == 0) {
-                                                    $color = 'circle button-blue';
+                                                    // $color = 'circle button-blue';
+                                                    echo '<th class=""><button class="circle button-blue"></button></th>';
                                                 }
                                                 if ($booking->booking_status == 1) {
-                                                    $color = 'circle button-red';
+                                                    // $color = 'circle button-red';
+                                                    echo '<th class=""><button class="circle button-red"></button></th>';
                                                 }
                                             } else {
-                                                $color = 'circle button-white';
+                                                // $color = 'circle button-white';
+                                                echo '<th class=""><button class="circle button-white"></button></th>';
                                             }
-                                            echo '<th class=""><button class="' . $color . '"></button></th>';
                                         }
                                     @endphp
                                 @endforeach
@@ -111,7 +114,7 @@
                         @endif
                     @endforeach
                 </thead>
-               
+
             </table>
             <br>
             {{ $phong->links() }}
