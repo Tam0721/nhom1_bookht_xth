@@ -18,7 +18,7 @@
             </script>
             @endif   
             {{--  --}}
-        {{-- <a class="btn text-primary" href="{{ route('create') }}">Tạo data</a> --}}
+        <a class="btn text-primary" href="{{ route('create') }}">Tạo data</a>
         {{--  --}}
     </div>
         <div class="timetable">
@@ -32,7 +32,7 @@
                         <th class="mau-xanh">Loại phòng</th>
                         <th class="mau-da">Ngày đặt</th>
                         <th class="mau-xanh">Ca/Buổi</th>
-                        <th class="mau-da">Mã phòng</th>
+                        <th class="mau-da">Phòng</th>
                         <th class="mau-da">Status</th>
                         <th class="mau-da">Lý do hủy</th>
                         <th class="mau-da">Ghi chú</th>
@@ -88,23 +88,19 @@
                             </th>
                             <th>{{ $lsDatPhong->ngay_dat }}</th>
                             <th>
+                                @foreach ($caHocs as $caHoc)
+                                    @if ($caHoc->id_ca_hoc == $lsDatPhong->id_ca_hoc)
+                                        {{ $caHoc->ten_ca_hoc}}
+                                    @endif
+                                @endforeach
+                            </th>
+                            <th>
                                 @foreach ($phongs as $phong)
-                                @if ($lsDatPhong->id_phong == $phong->id_phong)
-                                    @foreach ($caHocs as $caHoc)
-                                        @if ($caHoc->id_ca_hoc == $phong->id_ca_hoc)
-                                            {{ $caHoc->ten_ca_hoc}}
-                                        @endif
-                                    @endforeach    
-                                @endif
-                                @endforeach 
+                                    @if ($lsDatPhong->id_phong == $phong->id_phong)
+                                        {{ $phong->ten_phong}}
+                                    @endif
+                                @endforeach
                             </th>
-                            <th>{{ $lsDatPhong->id_phong }}</th>
-                            {{-- <th class="{{ $lsDatPhong->booking_status == 0 ? '' : 'd-none' }}">
-                                {{ $lsDatPhong->booking_status == 0 ? ' Chờ duyệt' : 'Đã duyệt' }}
-                            </th>
-                            <th class="{{ $lsDatPhong->booking_status > 0 ? '' : 'd-none' }}">
-                                {{ $lsDatPhong->booking_status == 1 ? 'Đã duyệt' : 'Đã hủy' }} 
-                            </th> --}}
                             <th>
                                 @if ($lsDatPhong->booking_status == 0)
                                     {{ 'Chờ duyệt' }}

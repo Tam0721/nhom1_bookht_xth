@@ -10,6 +10,7 @@ use App\Models\Coso;
 use App\Models\Tang;
 use App\Models\Toa;
 use App\Models\LoaiPhong;
+use App\Models\BoMon;
 
 class CalendarController extends Controller
 {
@@ -55,9 +56,20 @@ class CalendarController extends Controller
 
     public function home(Request $request){
         $currentDate = Carbon::now();
+        
 
         // Tính ngày đầu tiên của tuần hiện tại
-        $firstDayOfWeek = $currentDate->startOfWeek();
+        $DayOfWeek = Carbon::now();
+        $map = [
+            0 => "Chủ nhật",
+            1 => "Thứ Hai",
+            2 => "Thứ Ba",
+            3 => "Thứ Tư",
+            4 => "Thứ Năm",
+            5 => "Thứ Sáu",
+            6 => "Thứ Bảy"
+        ];
+        // dd($firstDayOfWeek);
 
         // Tạo mảng chứa các ngày trong tuần
         $calendar = [];
@@ -65,14 +77,17 @@ class CalendarController extends Controller
         $toa = Toa::all();
         $tang = Tang::all();
         $loaiPhong = LoaiPhong::all();
+        $boMon = BoMon::all();
         // Lặp qua từng ngày trong tuần
         for ($day = 0; $day < 7; $day++) {
-            $date = $firstDayOfWeek->copy()->addDays($day);
+            $date = $DayOfWeek->copy()->addDays($day);
+            $Thu = $map[$date->dayOfWeek];
 
             // Thêm thông tin về ngày vào mảng lịch
             $calendar[] = [
                 'date' => $date->toDateString(),
                 'day' => $date->day,
+                'Thu' => $Thu,
                 'time' =>  date('Y-m-d',strtotime($date))
             ];
             
@@ -95,7 +110,9 @@ class CalendarController extends Controller
         if(!empty($request->toa)){
             $phong->where('phong.id_toa_nha',$request->toa);
         }
+        
         $phong = $phong->paginate(25)->withQueryString();
-        return view('home', compact('calendar','phong','coSo','toa','tang','loaiPhong'));
+        // dd($phong);
+        return view('home', compact('calendar','phong','coSo','toa','tang','loaiPhong','boMon'));
     }
 }

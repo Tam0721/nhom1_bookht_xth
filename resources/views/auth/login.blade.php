@@ -50,11 +50,19 @@
                 </div>
             @enderror
             <br>
-            @if (Route::has('password.request'))
+            <p>
+                <a href="{{ route('register') }}" style="text-decoration:none; font-size: 1.5em; color: black;">
+                    Chưa có tài khoản?
+                </a>
+            </p>
+            <p class="mt-5">
+                @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" style="text-decoration:none; font-size: 1.5em; color: black;">
                     Quên mật khẩu?
                 </a>
             @endif
+            </p>
+            <br>
             <button class="signup-submit" type="submit">Đăng nhập</button>
 
         </form>

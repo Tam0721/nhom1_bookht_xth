@@ -10,12 +10,14 @@ class Phong extends Model
     use HasFactory;
     protected $table = 'phong';
     protected $primaryKey = 'id_phong';
-    protected $fillable = 
+    protected $fillable =
     [
         'ten_phong',
         'id_loai_phong',
         'id_co_so',
         'id_tang',
-        'id_toa_nha'
+        'id_toa_nha',
+        'created_at',
+        'updated_at'
     ];
 }

@@ -55,7 +55,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-success">Thêm Tòa</button>
-                            <a href="{{route('co_so')}}" class="btn btn-primary">Quay Lại</a>
+                            <a href="{{route('qltoa_nha')}}" class="btn btn-primary">Quay Lại</a>
                         </form>
                     </div>
                 </div>

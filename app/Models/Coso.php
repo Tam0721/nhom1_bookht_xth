@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Coso extends Model
 {
     protected $table = 'co_so';
@@ -11,7 +12,9 @@ class Coso extends Model
     protected $fillable =
     [
         'ten_co_so',
-        'dia_chi'
+        'dia_chi',
+        'created_at',
+        'updated_at'
     ];
     public function toas()
     {

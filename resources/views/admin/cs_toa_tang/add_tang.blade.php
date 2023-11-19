@@ -42,9 +42,9 @@
 
 
             <button type="submit" class="btn btn-success me-1">Thêm tầng</button>
-            <a href="{{ route("co_so") }}">
+            <a href="{{ route("qltoa_nha") }}">
                 <button class="btn btn-primary position-absolute" type="button"><i class="bi bi-plus-circle"></i>
-                    Back
+                    Quay lại
                 </button>
             </a>
         </form>

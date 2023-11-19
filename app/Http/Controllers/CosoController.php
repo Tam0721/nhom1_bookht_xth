@@ -9,7 +9,13 @@ use Illuminate\Http\Request;
 
 class CosoController extends Controller
 {
-
+    public function index(){
+        $coso = Coso::all();
+        $data = [
+            'cs' => $coso,
+        ];
+        return view('admin.cs_toa_tang.qlco_so', $data);
+    }
     public function create_cs()
     {
         return view('admin.cs_toa_tang.add');
@@ -37,7 +43,7 @@ class CosoController extends Controller
         $co_so->save();
 
         // Chuyển hướng người dùng về trang xác nhận hoặc trang chính
-        return redirect()->route('co_so')->with('success', 'Người dùng đã được thêm thành công!');
+        return redirect()->route('co_so')->with('success', 'Cơ sở đã được thêm thành công!');
     }
 
     /**
@@ -72,7 +78,7 @@ class CosoController extends Controller
         $co_so->save();
 
         // Chuyển hướng người dùng về trang xác nhận hoặc trang chính
-        return redirect()->route('co_so')->with('success', 'Người dùng đã được thêm thành công!');
+        return redirect()->route('co_so')->with('success', 'Cơ sở đã được sửa thành công!');
     }
 
     /**
