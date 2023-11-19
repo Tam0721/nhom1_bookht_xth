@@ -14,8 +14,8 @@
                     <tr class="head">
                         <th class="mau-xanhla">Thứ</th>
                         @foreach ($calendar as $item)
-                            <th class="mau-da" colspan="6">{{$item['Thu']}}</th>
-                        @endforeach                        
+                            <th class="mau-da" colspan="6">{{ $item['Thu'] }}</th>
+                        @endforeach
                     </tr>
                     <tr class="head">
                         <th class="mau-xanhla">Ngày</th>
@@ -63,17 +63,20 @@
                                                 ->where('id_phong', $item->id_phong)
                                                 ->where('id_ca_hoc', $i)
                                                 ->first();
+                                            $caHoc = cahoc::find($i);
                                             if ($booking) {
                                                 if ($booking->booking_status == 0) {
-                                                    $color = 'circle button-blue';
+                                                    // $color = 'circle button-blue';
+                                                    echo '<th class=""><button class="circle button-blue"></button></th>';
                                                 }
                                                 if ($booking->booking_status == 1) {
-                                                    $color = 'circle button-red';
+                                                    // $color = 'circle button-red';
+                                                    echo '<th class=""><button class="circle button-red"></button></th>';
                                                 }
                                             } else {
-                                                $color = 'circle button-white';
+                                                // $color = 'circle button-white';
+                                                echo '<th class=""><button class="circle button-white"></button></th>';
                                             }
-                                            echo '<th class=""><button class="' . $color . '"></button></th>';
                                         }
                                     @endphp
                                 @endforeach
@@ -106,7 +109,7 @@
                         @endif
                     @endforeach
                 </thead>
-               
+
             </table>
             <br>
             {{ $phong->links() }}
@@ -122,6 +125,7 @@
                     <option value="HN">Hà Nội</option>
                     <option value="DN">Đà Nẵng</option>
                 </select>
+                <input type="hidden" value="" name="coso">
                 <select class="form-select" id="toanha" name="toanha">
                     <option value="" hidden selected>Chọn toà nhà</option>
                     <option value="toaF">Tòa F</option>
@@ -152,6 +156,31 @@
                 <button type="button" class="btn btn-primary">ĐẶT PHÒNG</button>
             </form>
         </section>
-
+        {{-- <section id="form">
+            <form action="http://localhost:8000/booking" method="post">
+                <i class="fi fi-br-cross" id="thoat-form"></i>
+                <h1>ĐẶT PHÒNG</h1>
+                <label>Cơ sở:</label><br>
+                <input type="text" class="form-control" value="' .$item->ten_co_so .'" disabled><br>
+                <input type="hidden" value="' .$item->id_phong .'" name="id_phong">
+                <label>Thông tin phòng:</label><br>
+                <input type="text" class="form-control" disabled value="' .$item->ten_toa_nha.$item->ten_tang.$item->ten_phong.'" >
+                <br>
+                <label>Ngày tổ chức:</label><br>
+                <input class="datepicker" placeholder="Chọn ngày" name="ngay_to_chuc">                                                            
+                <label>Ca Học:</label><br>
+                <input type="text" class="form-control" disabled value="' .$caHoc->ten_ca_hoc .'"><br>
+                <input type="hidden" value="' .$caHoc->id_ca_hoc .'" name="id_ca_hoc">
+                <label>Sự kiện:</label><br>
+                <input type="text" class="form-control" disbled value="" name="su_kien" placeholder="Nhập vào sự kiện">
+                <input type="hidden" value="' .Auth::id() .'" name="id_user">
+                <select class="form-select" id="loaiphong" name="id_bo_mon">
+                    <option value="">Chọn Bộ Môn</option>
+                    <option value="1">CNTT</option>
+                    <option value="2">Quản trị kinh doanh</option>
+                </select>
+                <button type="submit" class="btn btn-primary">ĐẶT PHÒNG</button>
+            </form>
+        </section> --}}
     </main>
 @endsection
