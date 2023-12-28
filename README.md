@@ -41,11 +41,11 @@ Or on `Google Drive`: <a href="https://drive.google.com/drive/u/2/folders/1fhHQg
 
 Extract source
 
-<img src="/public/frontend/img/readme/extract.png">
+<img src="/public/img/extract.png">
 
 Create new folder in `xampp\htdocs` and move source to the folder was just created
 
-<img src="/public/frontend/img/readme/move_source.png">
+<img src="/public/img/move_source.png">
 
 ## Open the window `Command Line` in the folder was just created
 
@@ -65,32 +65,34 @@ php artisan key:generate
 
 Create new database
 
-<img src="https://6flames.id.vn/public/frontend/img/readme/import1.png">
+<img src="/public/img/create_database.png">
 
 `Import` database
 
-<img src="https://6flames.id.vn/public/frontend/img/readme/import2.png">
+<img src="/public/img/import_database.png">
 
 ## Connect to database
 
 Update information in file `.env` to connect to database
 
-<img src="https://6flames.id.vn/public/frontend/img/readme/connect.jpg">
+<img src="/public/img/connect.png">
 
 ## Run website
-Open `Command Line`
+- Open `Command Line`
 
 ```
 npm run dev
 ```
 
-<img src="https://6flames.id.vn/public/frontend/img/readme/run.png">
+<img src="/public/img/run1.png">
+
+- Open other `Command Line`
 
 ```
 php artisan serve
 ```
 
-<img src="https://6flames.id.vn/public/frontend/img/readme/run.png">
+<img src="/public/img/run2.png">
 
 ## Login to administration page
 
