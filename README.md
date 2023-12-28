@@ -31,31 +31,31 @@ On `Github`: <a href="https://github.com/Tam0721/nhom1_bookht_xth">Here</a>
 git clone https://github.com/Tam0721/nhom1_bookht_xth.git
 ```
 
-Or on `Google Drive`: <a href="https://drive.google.com/drive/u/2/folders/1fhHQgWxMTcj1j2mQehBiYoXzC4EybZBQ?q=sharedwith:public%20parent:1fhHQgWxMTcj1j2mQehBiYoXzC4EybZBQ" target="_blank">Here</a>
+Or on `Google Drive`: <a href="https://drive.google.com/drive/folders/1fhHQgWxMTcj1j2mQehBiYoXzC4EybZBQ?usp=sharing" target="_blank">Here</a>
 
-<a href="https://drive.google.com/drive/u/2/folders/1fhHQgWxMTcj1j2mQehBiYoXzC4EybZBQ?q=sharedwith:public%20parent:1fhHQgWxMTcj1j2mQehBiYoXzC4EybZBQ" target="_blank">
-    <img src="https://6flames.id.vn/public/frontend/img/readme/banner_sc.jpg">
+<a href="https://drive.google.com/drive/folders/1fhHQgWxMTcj1j2mQehBiYoXzC4EybZBQ?usp=sharing" target="_blank">
+    <img src="/public/img/google_drive.png">
 </a>
 
 ## Setting
 
-Extract source
+- Extract source
 
 <img src="/public/img/extract.png">
 
-Create new folder in `xampp\htdocs` and move source to the folder was just created
+- Create new folder in `xampp\htdocs` and move source to the folder was just created
 
 <img src="/public/img/move_source.png">
 
 ## Open the window `Command Line` in the folder was just created
 
-Remove bootstrap files `events`, `views`, `cache`, `route`, `config`, `compiled` to optimize the website
+- Remove bootstrap files `events`, `views`, `cache`, `route`, `config`, `compiled` to optimize the website
 
 ```
 php artisan optimize:clear
 ```
 
-Create new key
+- Create new key
 
 ```
 php artisan key:generate
@@ -63,11 +63,11 @@ php artisan key:generate
 
 ## Access phpmyadmin in `Xampp Control Panel`
 
-Create new database
+1. Create new database
 
 <img src="/public/img/create_database.png">
 
-`Import` database
+2. `Import` database
 
 <img src="/public/img/import_database.png">
 
@@ -104,4 +104,4 @@ Access:
 
 - Email: <b>admin@fe.edu.vn</b>
 
-- Mật khẩu: <b>12345678</b>
+- Password: <b>12345678</b>
