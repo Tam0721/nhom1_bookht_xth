@@ -33,7 +33,7 @@
             {{-- Email --}}
             <label for="email" class="signup-label" :value="__('Email')">Email</label>
             <input type="text" id="email" name = "email" :value="old('email')" class="signup-input"
-                placeholder="Email giảng viên">
+                placeholder="Email">
             @error('email')
                 <div class="badge" style="color:red; font-size: 1.5em" role="alert">
                     <strong>* {{ $message }}</strong>
